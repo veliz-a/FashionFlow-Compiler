@@ -1,3 +1,0 @@
-# Gramática de ventas (placeholder)
-
-// Añadir aquí la gramática de la sección Ventas

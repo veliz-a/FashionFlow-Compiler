@@ -24,18 +24,17 @@ Cada lenguaje cuenta con su propio analizador léxico (lexer) y sintáctico (par
 
 ```
 FashionFlow-Compiler/
-├── docs/                   # Documentación y entregables académicos
-│   ├── avance1/           # Primer entregable
-│   ├── avance2/           # Segundo entregable y gramáticas formales
-│   └── final/             # Informe final
-├── src/                   # Código fuente
-│   ├── produccion/        # Compilador de producción
-│   ├── inventario/        # Compilador de inventario
-│   ├── ventas/            # Compilador de ventas
-│   ├── common/            # Componentes compartidos (tokens, utilidades)
-│   └── main.cpp           # Punto de entrada principal
-├── examples/              # Archivos de prueba (.ffs)
-└── referencias/           # Material de referencia (caso de estudio Nancy's)
+├── docs/                           # Documentación y materiales del curso
+│   ├── avances_entregados/        # Entregables y gramáticas formales
+│   ├── material_clase/            # Guía del curso y ejemplos del profesor
+│   └── referencias/               # Caso de estudio Nancy's
+├── src/                           # Código fuente
+│   ├── produccion/                # Compilador de producción
+│   ├── inventario/                # Compilador de inventario
+│   ├── ventas/                    # Compilador de ventas
+│   ├── common/                    # Componentes compartidos (tokens, utilidades)
+│   └── main.cpp                   # Punto de entrada principal
+└── examples/                      # Archivos de prueba (.ffs)
 ```
 
 ## Compilación
@@ -88,9 +87,9 @@ Cada módulo incluye casos de prueba en `src/<modulo>/tests/`:
 
 La carpeta `docs/` contiene:
 
-- **Avances del proyecto**: Entregas parciales con análisis léxico y sintáctico
-- **Gramáticas formales**: Definiciones BNF/EBNF de cada lenguaje (en `docs/avance2/gramaticas/`)
-- **Informe final**: Documentación completa del proyecto
+- **avances_entregados/**: Entregas parciales, informe final y gramáticas formales (BNF/EBNF) de cada lenguaje
+- **material_clase/**: Guía final del curso y ejemplos del profesor
+- **referencias/**: Caso de estudio y entrevista a Nancy's Collection
 
 ## Curso
 

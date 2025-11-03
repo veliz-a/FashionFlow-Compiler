@@ -1,3 +1,0 @@
-# Gramática de producción (placeholder)
-
-// Añadir aquí la gramática de la sección Producción
