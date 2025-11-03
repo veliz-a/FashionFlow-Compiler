@@ -1,0 +1,3 @@
+# Test inventario 01 (placeholder)
+
+// Entrada de prueba 1

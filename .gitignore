@@ -1,0 +1,30 @@
+# Compilados
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.so
+
+# Temporales del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# Build
+build/
+bin/
+cmake-build-*/
+
+# Windows
+*.stackdump
+
+# Logs
+*.log

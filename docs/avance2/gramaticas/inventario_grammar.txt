@@ -1,0 +1,3 @@
+# Gramática de inventario (placeholder)
+
+// Añadir aquí la gramática de la sección Inventario
