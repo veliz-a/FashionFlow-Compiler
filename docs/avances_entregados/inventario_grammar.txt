@@ -1,3 +1,15 @@
 # Gramática de Inventario
 
-// Añadir aquí la gramática formal del lenguaje de inventario
+NOTA: Este archivo contiene la documentación formal de la gramática (BNF/EBNF) 
+para el entregable académico.
+
+La implementación del compilador (lexer y parser codificados manualmente en C++) 
+se encuentra en:
+- src/inventario/lexer_inventario.cpp
+- src/inventario/parser_inventario.cpp
+
+Este archivo es documentación de la gramática formal para entregar al profesor.
+
+---
+
+// Añadir aquí la gramática formal del lenguaje de inventario en notación BNF/EBNF
