@@ -1,0 +1,6 @@
+# Caso de Prueba - Inventario 02
+
+Este archivo debe contener un PROGRAMA DEMOSTRATIVO escrito en el lenguaje DSL de Inventario.
+Debe evidenciar una situación real de Nancy's Collection (distinta al caso 01).
+
+El compilador (lexer + parser) procesará este archivo de código fuente DSL.

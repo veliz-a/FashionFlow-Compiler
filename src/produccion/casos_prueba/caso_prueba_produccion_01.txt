@@ -1,0 +1,12 @@
+# Caso de Prueba - Producción 01
+
+Este archivo debe contener un PROGRAMA DEMOSTRATIVO escrito en el lenguaje DSL de Producción.
+Debe evidenciar una situación real de Nancy's Collection.
+
+El compilador (lexer + parser) procesará este archivo de código fuente DSL.
+
+Ejemplo hipotético:
+CORTAR tela vestido 2.5 metros
+CONFECCIONAR prenda vestido talla M
+REVISAR calidad
+EMPAQUETAR cantidad 10

@@ -35,9 +35,9 @@ FashionFlow-Compiler/
 │   │   └── ventas_grammar.txt         # Gramática formal BNF/EBNF - Ventas
 │   │
 │   ├── material_clase/                # Material del curso
-│   │   ├── Guía - Trabajo Final.pdf   # Guía oficial del proyecto
-│   │   └── ejemplos_profesor/         # Ejemplos de código del docente
-│   │       └── laboratorio_s11/       # Laboratorios de clase
+│   │   └── CompiladorFlex/            # Ejemplo de compilador del docente
+│   │       ├── lexer.l                # Analizador léxico en Flex
+│   │       └── lex.yy.c               # Código C generado
 │   │
 │   └── referencias/                   # Documentación de referencia
 │       ├── caso_estudio_nancys.pdf    # Caso de estudio Nancy's Collection
@@ -48,36 +48,31 @@ FashionFlow-Compiler/
 │   │   ├── lexer_produccion.cpp       # Analizador léxico
 │   │   ├── parser_produccion.cpp      # Analizador sintáctico
 │   │   ├── produccion.h               # Definiciones y estructuras
-│   │   └── tests/                     # Casos de prueba
-│   │       ├── test_produccion_01.txt
-│   │       └── test_produccion_02.txt
+│   │   └── casos_prueba/              # Programas demostrativos DSL
+│   │       ├── caso_prueba_produccion_01.txt
+│   │       └── caso_prueba_produccion_02.txt
 │   │
 │   ├── inventario/                    # Módulo Inventario
 │   │   ├── lexer_inventario.cpp
 │   │   ├── parser_inventario.cpp
 │   │   ├── inventario.h
-│   │   └── tests/
-│   │       ├── test_inventario_01.txt
-│   │       └── test_inventario_02.txt
+│   │   └── casos_prueba/              # Programas demostrativos DSL
+│   │       ├── caso_prueba_inventario_01.txt
+│   │       └── caso_prueba_inventario_02.txt
 │   │
 │   ├── ventas/                        # Módulo Ventas
 │   │   ├── lexer_ventas.cpp
 │   │   ├── parser_ventas.cpp
 │   │   ├── ventas.h
-│   │   └── tests/
-│   │       ├── test_ventas_01.txt
-│   │       └── test_ventas_02.txt
+│   │   └── casos_prueba/              # Programas demostrativos DSL
+│   │       ├── caso_prueba_ventas_01.txt
+│   │       └── caso_prueba_ventas_02.txt
 │   │
 │   ├── common/                        # Componentes compartidos
 │   │   ├── token.h                    # Definición de tokens
 │   │   └── utils.h                    # Utilidades comunes
 │   │
 │   └── main.cpp                       # Punto de entrada principal
-│
-└── examples/                          # Archivos de ejemplo .txt
-    ├── ejemplo_produccion.txt         # Programa de ejemplo - Producción
-    ├── ejemplo_inventario.txt         # Programa de ejemplo - Inventario
-    └── ejemplo_ventas.txt             # Programa de ejemplo - Ventas
 ```
 
 ## Compilación
@@ -105,38 +100,27 @@ g++ -o fashionflow src/main.cpp src/produccion/*.cpp src/inventario/*.cpp src/ve
 
 ## Uso
 
-Los compiladores procesan archivos de texto (`.txt`) con código fuente de cada lenguaje.
-
-### Ejecutar con archivos de ejemplo:
-
-```bash
-# Procesar archivo de producción
-./produccion examples/ejemplo_produccion.txt
-
-# Procesar archivo de inventario
-./inventario examples/ejemplo_inventario.txt
-
-# Procesar archivo de ventas
-./ventas examples/ejemplo_ventas.txt
-```
+Los compiladores procesan archivos de texto (`.txt`) con código fuente de cada lenguaje DSL.
 
 ### Ejecutar con casos de prueba:
 
-Cada módulo incluye casos de prueba en `src/<modulo>/tests/`:
+Cada módulo incluye programas demostrativos en `src/<modulo>/casos_prueba/`:
 
 ```bash
 # Pruebas del módulo Producción
-./produccion src/produccion/tests/test_produccion_01.txt
-./produccion src/produccion/tests/test_produccion_02.txt
+./produccion src/produccion/casos_prueba/caso_prueba_produccion_01.txt
+./produccion src/produccion/casos_prueba/caso_prueba_produccion_02.txt
 
 # Pruebas del módulo Inventario
-./inventario src/inventario/tests/test_inventario_01.txt
-./inventario src/inventario/tests/test_inventario_02.txt
+./inventario src/inventario/casos_prueba/caso_prueba_inventario_01.txt
+./inventario src/inventario/casos_prueba/caso_prueba_inventario_02.txt
 
 # Pruebas del módulo Ventas
-./ventas src/ventas/tests/test_ventas_01.txt
-./ventas src/ventas/tests/test_ventas_02.txt
+./ventas src/ventas/casos_prueba/caso_prueba_ventas_01.txt
+./ventas src/ventas/casos_prueba/caso_prueba_ventas_02.txt
 ```
+
+Estos programas demostrativos evidencian situaciones reales de Nancy's Collection.
 
 ## Documentación
 
@@ -156,10 +140,9 @@ Nota: Las gramáticas en esta carpeta son documentación formal. La implementaci
 
 #### 2. `material_clase/`
 Material proporcionado por el docente:
-- **Guía del Trabajo Final**: Especificaciones y requerimientos del proyecto
-- **ejemplos_profesor/**: Código de ejemplo y laboratorios de clase
-  - Implementaciones de referencia para lexer y parser
-  - Casos de uso demostrados durante el curso
+- **CompiladorFlex/**: Ejemplo de compilador usando Flex
+  - Implementación de referencia de analizador léxico
+  - Código fuente `.l` y código C generado `.c`
 
 #### 3. `referencias/`
 Documentación de contexto del proyecto:
