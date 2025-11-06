@@ -1,7 +1,5 @@
-// parser_inventario.cpp - placeholder
-#include <iostream>
-#include <vector>
 #include "inventario.h"
+#include <iostream>
 using namespace std;
 
 class ParserInventario {
@@ -13,90 +11,70 @@ public:
 
     Token current() { return tokens[pos]; }
     void advance() { if (pos < tokens.size()) pos++; }
-
     bool match(TokenType type) {
-        if (current().type == type) {
-            advance();
-            return true;
+        if (current().type == type) { advance(); return true; }
+        return false;
+    }
+
+    bool parseBloque() {
+        if (!match(LBRACE)) return false;
+        while (current().type != RBRACE && current().type != END) {
+            if (!parseAtributo()) return false;
+        }
+        return match(RBRACE);
+    }
+
+    bool parseAtributo() {
+        if (match(PRENDA) || match(TALLA) || match(CANTIDAD) ||
+            match(DE) || match(A) || match(EN) ||
+            match(FORMATO) || match(FECHA)) {
+            if (!match(COLON)) return false;
+            if (match(STRING) || match(NUMBER)) return true;
         }
         return false;
     }
 
-    // === Reglas de Producción ===
-    bool parseTransferencia() {
-        if (match(TRANSFERIR)) {
-            if (match(STRING) && match(TALLA) && match(STRING) && match(CANTIDAD)
-                && match(NUMBER) && match(DE) && match(STRING)
-                && match(A) && match(STRING) && match(FECHA) && match(STRING)) {
-                cout << "Instruccion TRANSFERIR valida\n";
-                return true;
-            }
-        }
+    bool parseTransferir() {
+        if (match(TRANSFERIR)) return parseBloque();
         return false;
     }
 
-    bool parseIngreso() {
-        if (match(INGRESAR)) {
-            if (match(STRING) && match(TALLA) && match(STRING) &&
-                match(CANTIDAD) && match(NUMBER) && match(A) && match(STRING)) {
-                cout << "Instruccion INGRESAR valida\n";
-                return true;
-            }
-        }
+    bool parseIngresar() {
+        if (match(INGRESAR)) return parseBloque();
         return false;
     }
 
-    bool parseConsulta() {
-        if (match(CONSULTAR)) {
-            if (match(STRING) && match(EN) && match(STRING)) {
-                cout << "Instruccion CONSULTAR valida\n";
-                return true;
-            }
-        }
+    bool parseConsultar() {
+        if (match(CONSULTAR)) return parseBloque();
         return false;
     }
 
     bool parseExportar() {
-        if (match(EXPORTAR)) {
-            if (match(FORMATO) && match(STRING) && match(FECHA) && match(STRING)) {
-                cout << "Instruccion EXPORTAR valida\n";
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool parseAjuste() {
-        if (match(AJUSTAR)) {
-            if (match(STRING) && match(TALLA) && match(STRING)
-                && match(CANTIDAD) && match(NUMBER) && match(EN) && match(STRING)) {
-                cout << "Instruccion AJUSTAR valida\n";
-                return true;
-            }
-        }
+        if (match(EXPORTAR)) return parseBloque();
         return false;
     }
 
     void parse() {
         while (current().type != END) {
-            if (parseTransferencia() || parseIngreso() || parseConsulta()
-                || parseExportar() || parseAjuste()) {
-                continue;
-            } else {
-                cerr << "Error de sintaxis cerca de: " << current().value << endl;
+            if (parseTransferir()) cout << " TRANSFERIR valido\n";
+            else if (parseIngresar()) cout << " INGRESAR valido\n";
+            else if (parseConsultar()) cout << " CONSULTAR valido\n";
+            else if (parseExportar()) cout << " EXPORTAR valido\n";
+            else {
+                cerr << " Error de sintaxis cerca de: " << current().value << endl;
                 break;
             }
         }
     }
 };
 
-// === Main para pruebas ===
+// Main
 int main() {
-    string filename = "src/inventario/tests/test_inventario_02.txt";
+    string filename = "src/inventario/tests/test_inventario_01.txt";
     vector<Token> tokens = lexerInventario(filename);
 
     cout << "=== TOKENS ===\n";
-    for (const auto& t : tokens)
+    for (auto &t : tokens)
         cout << t.value << " -> " << tokenTypeToString(t.type) << endl;
 
     cout << "\n=== ANALISIS SINTACTICO ===\n";

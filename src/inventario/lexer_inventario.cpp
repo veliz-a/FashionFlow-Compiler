@@ -1,15 +1,7 @@
-// lexer_inventario.cpp - placeholder
 #include "inventario.h"
-
-#include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
+#include <iostream>
 #include <cctype>
-
-using namespace std;
-
-// === Tipos de Tokens ===
 
 string tokenTypeToString(TokenType type) {
     switch (type) {
@@ -17,7 +9,7 @@ string tokenTypeToString(TokenType type) {
         case INGRESAR: return "INGRESAR";
         case CONSULTAR: return "CONSULTAR";
         case EXPORTAR: return "EXPORTAR";
-        case AJUSTAR: return "AJUSTAR";
+        case PRENDA: return "PRENDA";
         case TALLA: return "TALLA";
         case CANTIDAD: return "CANTIDAD";
         case DE: return "DE";
@@ -25,18 +17,18 @@ string tokenTypeToString(TokenType type) {
         case EN: return "EN";
         case FORMATO: return "FORMATO";
         case FECHA: return "FECHA";
+        case LBRACE: return "LBRACE";
+        case RBRACE: return "RBRACE";
+        case COLON: return "COLON";
         case STRING: return "STRING";
         case NUMBER: return "NUMBER";
         case END: return "END";
         default: return "UNKNOWN";
     }
 }
-
-// === Lexer ===
 vector<Token> lexerInventario(const string& filename) {
     ifstream in(filename);
     vector<Token> tokens;
-
     if (!in.is_open()) {
         cerr << "Error: no se pudo abrir el archivo " << filename << endl;
         return tokens;
@@ -58,7 +50,7 @@ vector<Token> lexerInventario(const string& filename) {
             else if (word == "INGRESAR") tokens.push_back({INGRESAR, word});
             else if (word == "CONSULTAR") tokens.push_back({CONSULTAR, word});
             else if (word == "EXPORTAR") tokens.push_back({EXPORTAR, word});
-            else if (word == "AJUSTAR") tokens.push_back({AJUSTAR, word});
+            else if (word == "PRENDA") tokens.push_back({PRENDA, word});
             else if (word == "TALLA") tokens.push_back({TALLA, word});
             else if (word == "CANTIDAD") tokens.push_back({CANTIDAD, word});
             else if (word == "DE") tokens.push_back({DE, word});
@@ -87,9 +79,11 @@ vector<Token> lexerInventario(const string& filename) {
             }
             tokens.push_back({NUMBER, num});
         }
-        else {
-            tokens.push_back({UNKNOWN, string(1, c)});
-        }
+        // Símbolos estructurales
+        else if (c == '{') tokens.push_back({LBRACE, "{"});
+        else if (c == '}') tokens.push_back({RBRACE, "}"});
+        else if (c == ':') tokens.push_back({COLON, ":"});
+        else tokens.push_back({UNKNOWN, string(1, c)});
     }
 
     tokens.push_back({END, ""});

@@ -7,8 +7,9 @@
 using namespace std;
 
 enum TokenType {
-    TRANSFERIR, INGRESAR, CONSULTAR, EXPORTAR, AJUSTAR,
-    TALLA, CANTIDAD, DE, A, EN, FORMATO, FECHA,
+    TRANSFERIR, INGRESAR, CONSULTAR, EXPORTAR,
+    PRENDA, TALLA, CANTIDAD, DE, A, EN, FORMATO, FECHA,
+    LBRACE, RBRACE, COLON,
     STRING, NUMBER,
     END, UNKNOWN
 };
@@ -20,6 +21,5 @@ struct Token {
 
 vector<Token> lexerInventario(const string& filename);
 string tokenTypeToString(TokenType type);
-
 
 #endif // INVENTARIO_H
