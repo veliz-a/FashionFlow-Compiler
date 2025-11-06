@@ -83,7 +83,7 @@ public:
                 || parseExportar() || parseAjuste()) {
                 continue;
             } else {
-                cerr << "❌ Error de sintaxis cerca de: " << current().value << endl;
+                cerr << "Error de sintaxis cerca de: " << current().value << endl;
                 break;
             }
         }
@@ -92,7 +92,7 @@ public:
 
 // === Main para pruebas ===
 int main() {
-    string filename = "src/inventario/tests/test_inventario_01.txt";
+    string filename = "src/inventario/tests/test_inventario_02.txt";
     vector<Token> tokens = lexerInventario(filename);
 
     cout << "=== TOKENS ===\n";
