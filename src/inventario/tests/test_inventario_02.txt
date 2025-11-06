@@ -1,3 +1,1 @@
-# Test inventario 02 (placeholder)
-
-// Entrada de prueba 2
+TRANSFERIR "Blusa Nancy" CANTIDAD 10 A "Tienda Lima"
