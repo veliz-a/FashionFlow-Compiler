@@ -17,6 +17,8 @@ string tokenTypeToString(TokenType type) {
         case EN: return "EN";
         case FORMATO: return "FORMATO";
         case FECHA: return "FECHA";
+        case CODIGO: return "CODIGO";
+        case DESCRIPCION: return "DESCRIPCION";
         case LBRACE: return "LBRACE";
         case RBRACE: return "RBRACE";
         case COLON: return "COLON";
@@ -26,6 +28,7 @@ string tokenTypeToString(TokenType type) {
         default: return "UNKNOWN";
     }
 }
+
 vector<Token> lexerInventario(const string& filename) {
     ifstream in(filename);
     vector<Token> tokens;
@@ -41,7 +44,7 @@ vector<Token> lexerInventario(const string& filename) {
         // Palabras clave
         if (isalpha(c)) {
             string word(1, toupper(c));
-            while (isalnum(in.peek())) {
+            while (isalnum(in.peek()) || in.peek() == '_') {
                 in.get(c);
                 word += toupper(c);
             }
@@ -58,6 +61,8 @@ vector<Token> lexerInventario(const string& filename) {
             else if (word == "EN") tokens.push_back({EN, word});
             else if (word == "FORMATO") tokens.push_back({FORMATO, word});
             else if (word == "FECHA") tokens.push_back({FECHA, word});
+            else if (word == "CODIGO") tokens.push_back({CODIGO, word});
+            else if (word == "DESCRIPCION") tokens.push_back({DESCRIPCION, word});
             else tokens.push_back({UNKNOWN, word});
         }
         // Cadenas entre comillas

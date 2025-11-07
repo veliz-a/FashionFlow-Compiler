@@ -15,7 +15,7 @@ INGRESAR {
 }
 
 CONSULTAR {
-    PRENDA: "Blusa Nancy"
+    PRENDA: "Blusa Nancy" 
     EN: "Tienda Lima"
 }
 

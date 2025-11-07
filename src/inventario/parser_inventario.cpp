@@ -11,9 +11,7 @@ public:
 
     Token current() { return tokens[pos]; }
 
-    void advance() {
-        if (pos < tokens.size()) pos++;
-    }
+    void advance() { if (pos < tokens.size()) pos++; }
 
     bool match(TokenType type) {
         if (current().type == type) {
@@ -25,62 +23,26 @@ public:
 
     bool parseTransferir() {
         if (!match(TRANSFERIR)) return false;
-
         bool hasError = false;
 
-        if (!match(LBRACE)) {
-            cerr << "Falta '{' despues de TRANSFERIR.\n";
-            hasError = true;
+        if (!match(LBRACE)) { cerr << "Falta '{' despues de TRANSFERIR.\n"; hasError = true; }
+
+        while (current().type != RBRACE && current().type != END &&
+               current().type != TRANSFERIR && current().type != INGRESAR &&
+               current().type != CONSULTAR && current().type != EXPORTAR) {
+
+            if (match(PRENDA)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para PRENDA.\n"; }
+            else if (match(TALLA)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para TALLA.\n"; }
+            else if (match(CANTIDAD)) { match(COLON); if (!match(NUMBER)) cerr << "Falta numero en CANTIDAD.\n"; }
+            else if (match(DE)) { match(COLON); if (!match(STRING)) cerr << "Falta almacen origen.\n"; }
+            else if (match(A)) { match(COLON); if (!match(STRING)) cerr << "Falta almacen destino.\n"; }
+            else if (match(FECHA)) { match(COLON); if (!match(STRING)) cerr << "Falta fecha.\n"; }
+            else { cerr << "Token inesperado dentro de TRANSFERIR: " << current().value << endl; advance(); hasError = true; }
         }
 
-        while (current().type != RBRACE &&
-               current().type != END &&
-               current().type != TRANSFERIR &&
-               current().type != INGRESAR &&
-               current().type != CONSULTAR &&
-               current().type != EXPORTAR) {
+        if (!match(RBRACE)) { cerr << "Falta '}' al final de TRANSFERIR.\n"; hasError = true; }
 
-            if (match(PRENDA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta valor para PRENDA.\n";
-            }
-            else if (match(TALLA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta valor para TALLA.\n";
-            }
-            else if (match(CANTIDAD)) {
-                match(COLON);
-                if (!match(NUMBER)) cerr << "Falta numero en CANTIDAD.\n";
-            }
-            else if (match(DE)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta almacen origen.\n";
-            }
-            else if (match(A)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta almacen destino.\n";
-            }
-            else if (match(FECHA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta fecha.\n";
-            }
-            else {
-                cerr << "Token inesperado dentro de TRANSFERIR: " << current().value << endl;
-                advance();
-                hasError = true;
-            }
-        }
-
-        if (!match(RBRACE)) {
-            cerr << "Falta '}' al final de TRANSFERIR.\n";
-            hasError = true;
-        }
-
-        if (!hasError)
-            cout << "TRANSFERIR valido\n";
-        else
-            cout << "TRANSFERIR con errores internos\n";
-
+        cout << (hasError ? "TRANSFERIR con errores internos\n" : "TRANSFERIR valido\n");
         return true;
     }
 
@@ -88,51 +50,23 @@ public:
         if (!match(INGRESAR)) return false;
         bool hasError = false;
 
-        if (!match(LBRACE)) {
-            cerr << "Falta '{' despues de INGRESAR.\n";
-            hasError = true;
+        if (!match(LBRACE)) { cerr << "Falta '{' despues de INGRESAR.\n"; hasError = true; }
+
+        while (current().type != RBRACE && current().type != END &&
+               current().type != TRANSFERIR && current().type != INGRESAR &&
+               current().type != CONSULTAR && current().type != EXPORTAR) {
+
+            if (match(CODIGO)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para CODIGO.\n"; }
+            else if (match(PRENDA)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para PRENDA.\n"; }
+            else if (match(DESCRIPCION)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para DESCRIPCION.\n"; }
+            else if (match(TALLA)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para TALLA.\n"; }
+            else if (match(A)) { match(COLON); if (!match(STRING)) cerr << "Falta destino en A.\n"; }
+            else { cerr << "Token inesperado dentro de INGRESAR: " << current().value << endl; advance(); hasError = true; }
         }
 
-        while (current().type != RBRACE &&
-               current().type != END &&
-               current().type != TRANSFERIR &&
-               current().type != INGRESAR &&
-               current().type != CONSULTAR &&
-               current().type != EXPORTAR) {
+        if (!match(RBRACE)) { cerr << "Falta '}' al final de INGRESAR.\n"; hasError = true; }
 
-            if (match(PRENDA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta valor para PRENDA.\n";
-            }
-            else if (match(TALLA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta valor para TALLA.\n";
-            }
-            else if (match(CANTIDAD)) {
-                match(COLON);
-                if (!match(NUMBER)) cerr << "Falta numero en CANTIDAD.\n";
-            }
-            else if (match(A)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta destino en A.\n";
-            }
-            else {
-                cerr << "Token inesperado dentro de INGRESAR: " << current().value << endl;
-                advance();
-                hasError = true;
-            }
-        }
-
-        if (!match(RBRACE)) {
-            cerr << "Falta '}' al final de INGRESAR.\n";
-            hasError = true;
-        }
-
-        if (!hasError)
-            cout << "INGRESAR valido\n";
-        else
-            cout << "INGRESAR con errores internos\n";
-
+        cout << (hasError ? "INGRESAR con errores internos\n" : "INGRESAR valido\n");
         return true;
     }
 
@@ -140,43 +74,20 @@ public:
         if (!match(CONSULTAR)) return false;
         bool hasError = false;
 
-        if (!match(LBRACE)) {
-            cerr << "Falta '{' despues de CONSULTAR.\n";
-            hasError = true;
+        if (!match(LBRACE)) { cerr << "Falta '{' despues de CONSULTAR.\n"; hasError = true; }
+
+        while (current().type != RBRACE && current().type != END &&
+               current().type != TRANSFERIR && current().type != INGRESAR &&
+               current().type != CONSULTAR && current().type != EXPORTAR) {
+
+            if (match(PRENDA)) { match(COLON); if (!match(STRING)) cerr << "Falta valor para PRENDA.\n"; }
+            else if (match(EN)) { match(COLON); if (!match(STRING)) cerr << "Falta ubicacion en EN.\n"; }
+            else { cerr << "Token inesperado dentro de CONSULTAR: " << current().value << endl; advance(); hasError = true; }
         }
 
-        while (current().type != RBRACE &&
-               current().type != END &&
-               current().type != TRANSFERIR &&
-               current().type != INGRESAR &&
-               current().type != CONSULTAR &&
-               current().type != EXPORTAR) {
+        if (!match(RBRACE)) { cerr << "Falta '}' al final de CONSULTAR.\n"; hasError = true; }
 
-            if (match(PRENDA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta valor para PRENDA.\n";
-            }
-            else if (match(EN)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta ubicacion en EN.\n";
-            }
-            else {
-                cerr << "Token inesperado dentro de CONSULTAR: " << current().value << endl;
-                advance();
-                hasError = true;
-            }
-        }
-
-        if (!match(RBRACE)) {
-            cerr << "Falta '}' al final de CONSULTAR.\n";
-            hasError = true;
-        }
-
-        if (!hasError)
-            cout << "CONSULTAR valido\n";
-        else
-            cout << "CONSULTAR con errores internos\n";
-
+        cout << (hasError ? "CONSULTAR con errores internos\n" : "CONSULTAR valido\n");
         return true;
     }
 
@@ -184,43 +95,20 @@ public:
         if (!match(EXPORTAR)) return false;
         bool hasError = false;
 
-        if (!match(LBRACE)) {
-            cerr << "Falta '{' despues de EXPORTAR.\n";
-            hasError = true;
+        if (!match(LBRACE)) { cerr << "Falta '{' despues de EXPORTAR.\n"; hasError = true; }
+
+        while (current().type != RBRACE && current().type != END &&
+               current().type != TRANSFERIR && current().type != INGRESAR &&
+               current().type != CONSULTAR && current().type != EXPORTAR) {
+
+            if (match(FORMATO)) { match(COLON); if (!match(STRING)) cerr << "Falta formato de exportacion.\n"; }
+            else if (match(FECHA)) { match(COLON); if (!match(STRING)) cerr << "Falta fecha de exportacion.\n"; }
+            else { cerr << "Token inesperado dentro de EXPORTAR: " << current().value << endl; advance(); hasError = true; }
         }
 
-        while (current().type != RBRACE &&
-               current().type != END &&
-               current().type != TRANSFERIR &&
-               current().type != INGRESAR &&
-               current().type != CONSULTAR &&
-               current().type != EXPORTAR) {
+        if (!match(RBRACE)) { cerr << "Falta '}' al final de EXPORTAR.\n"; hasError = true; }
 
-            if (match(FORMATO)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta formato de exportacion.\n";
-            }
-            else if (match(FECHA)) {
-                match(COLON);
-                if (!match(STRING)) cerr << "Falta fecha de exportacion.\n";
-            }
-            else {
-                cerr << "Token inesperado dentro de EXPORTAR: " << current().value << endl;
-                advance();
-                hasError = true;
-            }
-        }
-
-        if (!match(RBRACE)) {
-            cerr << "Falta '}' al final de EXPORTAR.\n";
-            hasError = true;
-        }
-
-        if (!hasError)
-            cout << "EXPORTAR valido\n";
-        else
-            cout << "EXPORTAR con errores internos\n";
-
+        cout << (hasError ? "EXPORTAR con errores internos\n" : "EXPORTAR valido\n");
         return true;
     }
 
@@ -235,34 +123,26 @@ public:
             else {
                 cerr << "Error de sintaxis cerca de: " << current().value << endl;
                 errorFound = true;
-
-                while (current().type != TRANSFERIR &&
-                       current().type != INGRESAR &&
-                       current().type != CONSULTAR &&
-                       current().type != EXPORTAR &&
-                       current().type != END) {
-                    advance();
-                }
+                while (current().type != TRANSFERIR && current().type != INGRESAR &&
+                       current().type != CONSULTAR && current().type != EXPORTAR &&
+                       current().type != END) advance();
             }
         }
 
-        if (!errorFound)
-            cout << "Analisis completado sin errores.\n";
-        else
-            cout << "Se detectaron errores durante el analisis.\n";
+        cout << (errorFound ? "Se detectaron errores durante el analisis.\n"
+                            : "Analisis completado sin errores.\n");
     }
 };
 
 int main() {
     string filename = "src/inventario/tests/test_inventario_02.txt";
-
     vector<Token> tokens = lexerInventario(filename);
 
-    cout << "=== TOKENS ===" << endl;
+    cout << "=== TOKENS ===\n";
     for (auto &t : tokens)
         cout << t.value << " -> " << tokenTypeToString(t.type) << endl;
 
-    cout << "\n=== ANALISIS SINTACTICO ===" << endl;
+    cout << "\n=== ANALISIS SINTACTICO ===\n";
     Parser parser(tokens);
     parser.parse();
 

@@ -1,7 +1,6 @@
 #ifndef INVENTARIO_H
 #define INVENTARIO_H
 
-// Cabeceras y tipos para módulo Inventario (placeholder)
 #include <string>
 #include <vector>
 using namespace std;
@@ -9,6 +8,7 @@ using namespace std;
 enum TokenType {
     TRANSFERIR, INGRESAR, CONSULTAR, EXPORTAR,
     PRENDA, TALLA, CANTIDAD, DE, A, EN, FORMATO, FECHA,
+    CODIGO, DESCRIPCION,
     LBRACE, RBRACE, COLON,
     STRING, NUMBER,
     END, UNKNOWN
