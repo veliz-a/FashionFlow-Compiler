@@ -1,0 +1,10 @@
+# Ejemplo Ventas (placeholder)
+
+// Contenido de ejemplo para ventas
+
+#include <iostream>
+
+
+
+
+
