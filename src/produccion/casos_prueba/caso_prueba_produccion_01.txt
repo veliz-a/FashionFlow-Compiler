@@ -1,12 +1,9 @@
-# Caso de Prueba - Producción 01
+// Caso de Prueba 1 - Declaracion Basica de Orden
+// Una orden simple con tallas y colores
 
-Este archivo debe contener un PROGRAMA DEMOSTRATIVO escrito en el lenguaje DSL de Producción.
-Debe evidenciar una situación real de Nancy's Collection.
-
-El compilador (lexer + parser) procesará este archivo de código fuente DSL.
-
-Ejemplo hipotético:
-CORTAR tela vestido 2.5 metros
-CONFECCIONAR prenda vestido talla M
-REVISAR calidad
-EMPAQUETAR cantidad 10
+ORDEN ORD-2025-001 {
+    DISEÑO: BLUSA-VER-023
+    TALLAS: [S, M, L]
+    COLORES: [Azul, Blanco]
+    CANTIDADES: [10, 12, 15, 8, 20, 5]
+}
