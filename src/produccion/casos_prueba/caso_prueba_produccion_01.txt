@@ -1,0 +1,9 @@
+// Caso de Prueba 1 - Declaracion Basica de Orden
+// Una orden simple con tallas y colores
+
+ORDEN ORD-2025-001 {
+    DISEÑO: BLUSA-VER-023
+    TALLAS: [S, M, L]
+    COLORES: [Azul, Blanco]
+    CANTIDADES: [10, 12, 15, 8, 20, 5]
+}

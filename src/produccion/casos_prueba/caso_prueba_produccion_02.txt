@@ -1,0 +1,16 @@
+// Caso de Prueba 2 - Multiples Ordenes
+// Varias ordenes de diferentes prendas
+
+ORDEN ORD-2025-002 {
+    DISEÑO: PANTALON-OTO-045
+    TALLAS: [28, 30, 32, 34]
+    COLORES: [Negro, Azul, Beige]
+    CANTIDADES: [5, 8, 10, 12, 6, 9, 11, 14, 4, 7, 9, 10]
+}
+
+ORDEN ORD-2025-003 {
+    DISEÑO: VESTIDO-PRI-088
+    TALLAS: [XS, S, M, L, XL]
+    COLORES: [Rojo, Verde]
+    CANTIDADES: [3, 5, 8, 6, 4, 2, 4, 7, 5, 3]
+}
