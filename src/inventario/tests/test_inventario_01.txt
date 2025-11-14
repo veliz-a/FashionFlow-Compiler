@@ -1,3 +1,25 @@
-# Test inventario 01 (placeholder)
+TRANSFERIR {
+    PRENDA: "Blusa Nancy"
+    TALLA: "M"
+    CANTIDAD: 15
+    DE: "Almacén Central"
+    A: "Tienda Iquitos"
+    FECHA: "2025-10-15"
+}
 
-// Entrada de prueba 1
+INGRESAR {
+    PRENDA: "Falda Midi"
+    TALLA: "S"
+    CANTIDAD: 10
+    A: "Almacén Central"
+}
+
+CONSULTAR {
+    PRENDA: "Blusa Nancy"
+    EN: "Tienda Lima"
+}
+
+EXPORTAR {
+    FORMATO: "CSV"
+    FECHA: "2025-10-15"
+}
