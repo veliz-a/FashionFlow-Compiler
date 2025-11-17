@@ -12,7 +12,7 @@ INGRESAR{
 	PRENDA: "Falda Midi"
 	DESCRIPCION:"falda ancha"
 	TALLA: "S"
-	A: "Almacén Central"
+	A: "Almacen Central"
 
 }
 
