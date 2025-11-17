@@ -1,24 +1,26 @@
-TRANSFERIR (
-    PRENDA: "Blusa Nancy"
+TRANSFERIR{
     TALLA: "M"
     CANTIDAD: 15
-    DE: "Almacén Central"
+    DE: "Almacen Central"
     A: "Tienda Iquitos"
     FECHA: "2025-10-15"
-)
+}
 
-INGRESAR {
+INGRESAR{
+    CODIGO: "COD 0406"
     PRENDA: "Falda Midi"
+    DESCRIPCION:"falda ancha"
     TALLA: "S"
-    CANTIDAD: 10
-    A: "Almacén Central"
+    A: "Almacen Central"
+
 }
 
 CONSULTAR {
-    PRENDA: "Blusa Nancy" 
+    PRENDA:"Blusa Nancy"
     EN: "Tienda Lima"
 }
 
 EXPORTAR {
-    FORMATO: "CSV"
-    FECHA: 2025-10-15
+    FORMATO: "CSV" 
+    FECHA: "2025-10-15"
+}

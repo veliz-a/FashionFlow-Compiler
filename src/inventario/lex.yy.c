@@ -409,9 +409,9 @@ static const YY_CHAR yy_ec[256] =
 
 static const YY_CHAR yy_meta[28] =
     {   0,
-        1,    1,    1,    1,    2,    1,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    1,    1
+        1,    1,    2,    1,    3,    1,    3,    3,    3,    3,
+        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
+        3,    3,    3,    3,    3,    1,    1
     } ;
 
 static const flex_int16_t yy_base[101] =
@@ -424,8 +424,8 @@ static const flex_int16_t yy_base[101] =
        61,   60,   73,   72,   67,   67,   69,   53,   64,   54,
        56,   56,   47,    0,   46,   46,   60,    0,   54,   58,
         0,   41,   43,   55,   42,   53,    0,   48,   48,   50,
-       47,   34,    0,   33,   32,    0,   31,   33,    0,    0,
-       32,    0,   26,   22,   23,    0,    0,  114,   49,   37
+       47,   34,    0,   33,   32,    0,   30,   33,    0,    0,
+       32,    0,   26,   22,   23,    0,    0,  114,   49,   36
 
     } ;
 
@@ -451,7 +451,7 @@ static const flex_int16_t yy_nxt[142] =
        11,   11,   18,   11,   11,   19,   20,   21,   21,   21,
        21,   26,   29,   31,   35,   21,   21,   38,   25,   30,
        97,   32,   96,   27,   95,   39,   94,   93,   36,   22,
-       22,   92,   91,   90,   89,   88,   87,   86,   85,   84,
+       92,   22,   91,   90,   89,   88,   87,   86,   85,   84,
        83,   82,   81,   80,   79,   78,   77,   76,   75,   74,
        73,   72,   71,   70,   69,   68,   67,   66,   65,   64,
        63,   62,   61,   60,   59,   58,   57,   56,   55,   54,
@@ -471,7 +471,7 @@ static const flex_int16_t yy_chk[142] =
         1,    1,    1,    1,    1,    1,    1,    5,    5,    6,
         6,   12,   14,   15,   18,   21,   21,   27,  100,   14,
        95,   15,   94,   12,   93,   27,   91,   88,   18,   99,
-       99,   87,   85,   84,   82,   81,   80,   79,   78,   76,
+       87,   99,   85,   84,   82,   81,   80,   79,   78,   76,
        75,   74,   73,   72,   70,   69,   67,   66,   65,   63,
        62,   61,   60,   59,   58,   57,   56,   55,   54,   53,
        52,   51,   50,   49,   48,   47,   46,   45,   44,   43,
@@ -867,40 +867,50 @@ YY_RULE_SETUP
 { return COLON; }
 	YY_BREAK
 case 18:
-/* rule 18 can match eol */
 YY_RULE_SETUP
 #line 28 "inventario.l"
-{ yylval.text = strdup(yytext + 1);
-            yylval.text[strlen(yylval.text) - 1] = '\0';
-            return STRING;}
+{
+    char *raw = strdup(yytext + 1);
+    raw[strlen(raw) - 1] = '\0';
+    yylval.text = raw;
+    return STRING;
+}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 32 "inventario.l"
-{ yylval.number = atoi(yytext); return NUMBER;}
+#line 35 "inventario.l"
+{
+    yylval.number = atoi(yytext);
+    return NUMBER;
+}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 34 "inventario.l"
-{ yylval.text = strdup(yytext); return UNKNOWN;}
+#line 40 "inventario.l"
+{
+    yylval.text = strdup(yytext);
+    return UNKNOWN;
+}
 	YY_BREAK
 case 21:
 /* rule 21 can match eol */
 YY_RULE_SETUP
-#line 36 "inventario.l"
+#line 45 "inventario.l"
 ;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 37 "inventario.l"
-{ printf("Caracter inesperado: %s\n", yytext);}
+#line 47 "inventario.l"
+{
+    printf("Caracter inesperado: %s\n", yytext);
+}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 39 "inventario.l"
+#line 51 "inventario.l"
 ECHO;
 	YY_BREAK
-#line 903 "lex.yy.c"
+#line 913 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1905,9 +1915,8 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 39 "inventario.l"
+#line 51 "inventario.l"
 
 
-int yywrap() {
-    return 1;
-}
+int yywrap() { return 1; }
+
