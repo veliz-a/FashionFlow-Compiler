@@ -1,101 +1,69 @@
 # FashionFlow Compiler
 
-Compilador de lenguajes específicos de dominio (DSL) para automatizar procesos operativos en Nancy's Collection.
+Sistema de compiladores para automatizar procesos de produccion, inventario y ventas en Nancy's Collection.
 
 ## Equipo - Grupo 2
 
-- **Alejandra Veliz Garcia** [2311640] - Lenguaje de Producción
-- **María Sofía Solari Hipólito** [2320632] - Lenguaje de Inventario  
-- **Hugo Alexander Ramos Niño Neira** [2310120] - Lenguaje de Ventas
+- Alejandra Veliz Garcia [2311640] - Produccion
+- Sofia Solari Hipolito [2320632] - Inventario
+- Hugo Ramos Nino Neira [2310120] - Ventas
 
-## Descripción del Proyecto
+Curso: Compiladores PREISF07C01M - Profesor Javier Antonio Dioses Zarate
 
-Proyecto de la asignatura Compiladores (PREISF07C01M) - Universidad San Ignacio de Loyola.
-
-Este proyecto implementa tres lenguajes específicos de dominio diseñados para automatizar los procesos operativos de Nancy's Collection, una empresa del sector textil:
-
-1. **Lenguaje de Producción**: Control y seguimiento de procesos de corte y confección de prendas
-2. **Lenguaje de Inventario**: Gestión de ingreso, salida y disponibilidad de mercadería
-3. **Lenguaje de Ventas**: Registro y análisis de transacciones comerciales
-
-Cada lenguaje cuenta con su propio analizador léxico (lexer) y sintáctico (parser) implementados manualmente en C++, procesando archivos de texto (`.txt`).
-
-## Estructura del Proyecto
+## Estructura
 
 ```
-FashionFlow-Compiler/
-│
-├── docs/                               # Documentación y materiales académicos
-│   ├── avances_entregados/            # Entregables del curso y gramáticas
-│   ├── material_clase/                # Material del curso y ejemplos
-│   └── referencias/                   # Documentación de referencia
-│
-├── examples/                          # Ejemplos de uso de los lenguajes DSL
-│
-├── src/                               # Código fuente del compilador
-│   ├── produccion/                    # Módulo Producción
-│   │   ├── produccion.l               # Analizador léxico (Flex)
-│   │   ├── produccion.y               # Analizador sintáctico (Bison)
-│   │   └── casos_prueba/              # Programas de prueba
-│   │
-│   ├── inventario/                    # Módulo Inventario
-│   │   ├── lexer_inventario.cpp       # Analizador léxico
-│   │   ├── parser_inventario.cpp      # Analizador sintáctico
-│   │   ├── inventario.h               # Definiciones
-│   │   └── tests/                     # Casos de prueba
-│   │
-│   ├── ventas/                        # Módulo Ventas
-│   │   ├── lexer_ventas.cpp           # Analizador léxico
-│   │   ├── parser_ventas.cpp          # Analizador sintáctico
-│   │   ├── ventas.h                   # Definiciones
-│   │   └── tests/                     # Casos de prueba
-│   │
-│   ├── common/                        # Componentes compartidos
-│   └── main.cpp                       # Punto de entrada principal
+src/
+├── produccion/     # Modulo de produccion (Flex/Bison)
+├── inventario/     # Modulo de inventario (C++)
+├── ventas/         # Modulo de ventas (Flex/Bison)
+└── main.cpp        # Sistema integrado
 ```
 
-## Compilación
+## Compilacion
 
-Cada módulo puede compilarse de forma independiente según su implementación.
-
-### Módulo de Producción (Flex/Bison)
-
-```bash
-cd src/produccion
-bison -d produccion.y
-flex produccion.l
-gcc lex.yy.c produccion.tab.c -o compilador_produccion
+```powershell
+./compile_all.ps1
 ```
 
-### Módulos de Inventario y Ventas (C++)
+## Ejecucion
 
-Consultar las instrucciones específicas en cada módulo.
-
-## Uso
-
-Cada módulo procesa archivos de texto (`.txt`) con código fuente en su respectivo lenguaje DSL.
-
-### Ejemplo - Módulo de Producción
-
-```bash
-cd src/produccion
-./compilador_produccion casos_prueba/caso_prueba_produccion_01.txt
+```powershell
+./fashionflow.exe
 ```
 
-Consultar cada módulo para instrucciones específicas de uso y ejemplos de código.
+Cada modulo ofrece:
+1. **Registrar nueva operacion** - Abre editor para ingresar datos (Opcion principal)
+2. Ver ejemplo basico - Ejecuta caso de prueba simple
+3. Ver ejemplo completo - Ejecuta caso de prueba avanzado
+4. **Ver registros guardados (CSV)** - Abre el archivo CSV con todas las operaciones
 
-## Documentación
+Archivos CSV generados:
+- `produccion_ordenes.csv` - Ordenes de produccion
+- `inventario_movimientos.csv` - Transferencias e ingresos
+- `ventas_registro.csv` - Ventas y transacciones
 
-La documentación del proyecto está organizada en la carpeta `docs/`:
+Ver EJEMPLOS.md para sintaxis de cada lenguaje.
+Ver BUILD.md para instrucciones de compilacion.
 
-- **avances_entregados/**: Gramáticas formales y entregables del curso
-- **material_clase/**: Material proporcionado por el docente
-- **referencias/**: Documentación de contexto del proyecto
+## Modulos
 
-Cada módulo en `src/` contiene su propia documentación específica.
+### 1. Produccion (Alejandra)
+Ordenes de produccion, control de corte y confeccion.
+- Archivos: `produccion.l`, `produccion.y`
+- Pruebas: `casos_prueba/`
 
-## Curso
+### 2. Inventario (Sofia)
+Transferencias, ingresos y consultas de stock.
+- Archivos: `lexer_inventario.cpp`, `parser_inventario.cpp`
+- Pruebas: `tests/`
 
-**Compiladores** - Profesor Javier Antonio Dioses Zárate  
-Facultad de Ingeniería - Universidad San Ignacio de Loyola  
-Ciclo 2025-02
+### 3. Ventas (Hugo)
+Registro de clientes, ventas, gastos, pagos y salarios.
+- Archivos: `Ventas.l`, `Ventas.y`
+- Pruebas: `tests/`
+
+## Documentacion
+
+- `docs/avances_entregados/` - Gramaticas formales
+- `BUILD.md` - Instrucciones de compilacion

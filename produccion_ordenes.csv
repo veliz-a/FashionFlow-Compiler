@@ -1,0 +1,5 @@
+Timestamp,Codigo_Orden,Estado
+# FashionFlow - Registro de Ordenes de Produccion
+# Nancy's Collection
+# Estado: EXITO (compilacion correcta) | ERROR (sintaxis invalida)
+2025-11-23 01:05:36,ORD_20251123_010536,ERROR
