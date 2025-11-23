@@ -1,69 +1,92 @@
 # FashionFlow Compiler
 
-Sistema de compiladores para automatizar procesos de produccion, inventario y ventas en Nancy's Collection.
+Compilador integrado para gestión de producción, inventario y ventas en Nancy's Collection.
 
 ## Equipo - Grupo 2
 
-- Alejandra Veliz Garcia [2311640] - Produccion
+- Alejandra Veliz Garcia [2311640] - Producción
 - Sofia Solari Hipolito [2320632] - Inventario
 - Hugo Ramos Nino Neira [2310120] - Ventas
 
 Curso: Compiladores PREISF07C01M - Profesor Javier Antonio Dioses Zarate
 
-## Estructura
+## Características
 
-```
-src/
-├── produccion/     # Modulo de produccion (Flex/Bison)
-├── inventario/     # Modulo de inventario (C++)
-├── ventas/         # Modulo de ventas (Flex/Bison)
-└── main.cpp        # Sistema integrado
-```
+- **Sistema Integrado**: Interfaz unificada para los tres módulos
+- **Persistencia CSV**: Registros automáticos en archivos CSV
+- **Entrada Interactiva**: Archivos temporales para registro de operaciones
+- **Validación Sintáctica**: Rechaza archivos vacíos o inválidos
+- **Módulos DSL**: Lenguajes específicos por dominio
 
-## Compilacion
+## Requisitos
+
+- Windows PowerShell
+- Flex/Bison (winflexbison3)
+- MinGW (gcc/g++)
+- Notepad (editor predeterminado)
+
+## Instalación y Compilación
 
 ```powershell
+# Clonar repositorio
+git clone https://github.com/veliz-a/FashionFlow-Compiler.git
+cd FashionFlow-Compiler
+
+# Compilar todo
 ./compile_all.ps1
 ```
 
-## Ejecucion
+## Uso
 
 ```powershell
+# Ejecutar sistema integrado
 ./fashionflow.exe
 ```
 
-Cada modulo ofrece:
-1. **Registrar nueva operacion** - Abre editor para ingresar datos (Opcion principal)
-2. Ver ejemplo basico - Ejecuta caso de prueba simple
-3. Ver ejemplo completo - Ejecuta caso de prueba avanzado
-4. **Ver registros guardados (CSV)** - Abre el archivo CSV con todas las operaciones
+### Menú Principal
+1. **Producción** - Gestionar órdenes de producción
+2. **Inventario** - Controlar transferencias y stock
+3. **Ventas** - Registrar clientes y transacciones
+4. Salir
 
-Archivos CSV generados:
-- `produccion_ordenes.csv` - Ordenes de produccion
-- `inventario_movimientos.csv` - Transferencias e ingresos
-- `ventas_registro.csv` - Ventas y transacciones
+### Operaciones por Módulo
+Cada módulo permite:
+- Registrar nueva operación (abre editor)
+- Ver ejemplos básicos/completos
+- Ver registros CSV guardados
 
-Ver EJEMPLOS.md para sintaxis de cada lenguaje.
-Ver BUILD.md para instrucciones de compilacion.
+## Estructura del Proyecto
 
-## Modulos
+```
+src/
+├── main.cpp                    # Sistema integrado
+├── common/                     # Utilidades compartidas
+├── produccion/                 # DSL Producción (Flex/Bison)
+│   ├── produccion.l/.y
+│   └── casos_prueba/
+├── inventario/                 # DSL Inventario (C++ manual)
+│   ├── lexer_inventario.cpp
+│   └── parser_inventario.cpp
+└── ventas/                     # DSL Ventas (Flex/Bison)
+    ├── Ventas.l/.y
+    └── tests/
 
-### 1. Produccion (Alejandra)
-Ordenes de produccion, control de corte y confeccion.
-- Archivos: `produccion.l`, `produccion.y`
-- Pruebas: `casos_prueba/`
+temp_*.txt                      # Archivos temporales para entrada
+*.csv                           # Registros persistentes
+compile_all.ps1                 # Script de compilación
+```
 
-### 2. Inventario (Sofia)
-Transferencias, ingresos y consultas de stock.
-- Archivos: `lexer_inventario.cpp`, `parser_inventario.cpp`
-- Pruebas: `tests/`
+## Archivos Generados
 
-### 3. Ventas (Hugo)
-Registro de clientes, ventas, gastos, pagos y salarios.
-- Archivos: `Ventas.l`, `Ventas.y`
-- Pruebas: `tests/`
+- `produccion_ordenes.csv` - Órdenes de producción
+- `inventario_movimientos.csv` - Transferencias de inventario
+- `ventas_registro.csv` - Registros de ventas
 
-## Documentacion
+## Sintaxis DSL
 
-- `docs/avances_entregados/` - Gramaticas formales
-- `BUILD.md` - Instrucciones de compilacion
+Ver ejemplos en archivos `temp_*.txt` y casos de prueba en cada módulo.
+
+## Documentación
+
+- `docs/avances_entregados/` - Gramáticas formales
+- `docs/material_clase/` - Referencias del curso
