@@ -1,0 +1,12 @@
+Registrar_Cliente("Sofia Martinez", "72345678", "sofia@email.com", "Calle Los Olivos 789");
+
+Registrar_Venta("VNT003", 320, 1, "Vestido", "S", "2025-02-16");
+Registrar_Venta("VNT004", 150, 3, "Falda", "M", "2025-02-16");
+
+Registrar_Gasto("Marketing", "Publicidad Facebook", "2025-02-16");
+
+Registrar_Pago("Sofia Martinez", "Efectivo", 320, "VNT003", "2025-02-16");
+
+Registrar_Salario(1800, 30, "Lucia Gomez", "Cajera", "2025-02-16");
+
+Generar_Reporte;

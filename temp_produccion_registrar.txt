@@ -1,0 +1,14 @@
+// INSTRUCCIONES: Registre su orden de produccion aqui
+// Despues de guardar y cerrar, el sistema procesara y limpiara este archivo automaticamente
+//
+// EJEMPLO (puede poner las tallas y colores que necesite):
+// ORDEN ORD-001 {
+//     DISENO: BLUSA-VER-023
+//     TALLAS: [S, M, L]
+//     COLORES: [Azul, Blanco]
+//     CANTIDADES: [10, 15, 20, 8, 12, 5]
+// }
+//
+// Escriba su orden debajo de esta linea:
+// ===============================================
+

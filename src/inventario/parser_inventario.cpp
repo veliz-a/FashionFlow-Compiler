@@ -43,7 +43,7 @@ public:
         if (!match(RBRACE)) { cerr << "Falta '}' al final de TRANSFERIR.\n"; hasError = true; }
 
         cout << (hasError ? "TRANSFERIR con errores internos\n" : "TRANSFERIR valido\n");
-        return true;
+        return !hasError;
     }
 
     bool parseIngresar() {
@@ -67,7 +67,7 @@ public:
         if (!match(RBRACE)) { cerr << "Falta '}' al final de INGRESAR.\n"; hasError = true; }
 
         cout << (hasError ? "INGRESAR con errores internos\n" : "INGRESAR valido\n");
-        return true;
+        return !hasError;
     }
 
     bool parseConsultar() {
@@ -88,6 +88,7 @@ public:
         if (!match(RBRACE)) { cerr << "Falta '}' al final de CONSULTAR.\n"; hasError = true; }
 
         cout << (hasError ? "CONSULTAR con errores internos\n" : "CONSULTAR valido\n");
+        return !hasError;
         return true;
     }
 
@@ -109,28 +110,36 @@ public:
         if (!match(RBRACE)) { cerr << "Falta '}' al final de EXPORTAR.\n"; hasError = true; }
 
         cout << (hasError ? "EXPORTAR con errores internos\n" : "EXPORTAR valido\n");
-        return true;
+        return !hasError;
     }
 
     void parse() {
         bool errorFound = false;
 
         while (current().type != END) {
-            if (parseTransferir()) {}
-            else if (parseIngresar()) {}
-            else if (parseConsultar()) {}
-            else if (parseExportar()) {}
+            bool result = false;
+            if (current().type == TRANSFERIR) result = parseTransferir();
+            else if (current().type == INGRESAR) result = parseIngresar();
+            else if (current().type == CONSULTAR) result = parseConsultar();
+            else if (current().type == EXPORTAR) result = parseExportar();
             else {
                 cerr << "Error de sintaxis cerca de: " << current().value << endl;
                 errorFound = true;
                 while (current().type != TRANSFERIR && current().type != INGRESAR &&
                        current().type != CONSULTAR && current().type != EXPORTAR &&
                        current().type != END) advance();
+                continue;
             }
+            
+            if (!result) errorFound = true;
         }
 
-        cout << (errorFound ? "Se detectaron errores durante el analisis.\n"
-                            : "Analisis completado sin errores.\n");
+        if (errorFound) {
+            cout << "Se detectaron errores durante el analisis.\n";
+            exit(1);
+        } else {
+            cout << "Analisis completado sin errores.\n";
+        }
     }
 };
 
