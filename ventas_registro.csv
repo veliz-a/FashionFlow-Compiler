@@ -1,0 +1,8 @@
+Timestamp,Codigo_Venta,Estado
+# FashionFlow - Registro de Ventas
+# Nancy's Collection
+# Estado: EXITO (compilacion correcta) | ERROR (sintaxis invalida)
+2025-11-23 01:07:14,VNT_20251123_010714,ERROR
+2025-11-23 01:10:26,VNT_20251123_011026,ERROR
+2025-11-23 01:18:26,VNT_20251123_011826,ERROR
+2025-11-23 01:24:12,VNT_20251123_012412,ERROR

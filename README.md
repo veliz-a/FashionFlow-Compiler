@@ -1,101 +1,92 @@
 # FashionFlow Compiler
 
-Compilador de lenguajes específicos de dominio (DSL) para automatizar procesos operativos en Nancy's Collection.
+Compilador integrado para gestión de producción, inventario y ventas en Nancy's Collection.
 
 ## Equipo - Grupo 2
 
-- **Alejandra Veliz Garcia** [2311640] - Lenguaje de Producción
-- **María Sofía Solari Hipólito** [2320632] - Lenguaje de Inventario  
-- **Hugo Alexander Ramos Niño Neira** [2310120] - Lenguaje de Ventas
+- Alejandra Veliz Garcia [2311640] - Producción
+- Sofia Solari Hipolito [2320632] - Inventario
+- Hugo Ramos Nino Neira [2310120] - Ventas
 
-## Descripción del Proyecto
+Curso: Compiladores PREISF07C01M - Profesor Javier Antonio Dioses Zarate
 
-Proyecto de la asignatura Compiladores (PREISF07C01M) - Universidad San Ignacio de Loyola.
+## Características
 
-Este proyecto implementa tres lenguajes específicos de dominio diseñados para automatizar los procesos operativos de Nancy's Collection, una empresa del sector textil:
+- **Sistema Integrado**: Interfaz unificada para los tres módulos
+- **Persistencia CSV**: Registros automáticos en archivos CSV
+- **Entrada Interactiva**: Archivos temporales para registro de operaciones
+- **Validación Sintáctica**: Rechaza archivos vacíos o inválidos
+- **Módulos DSL**: Lenguajes específicos por dominio
 
-1. **Lenguaje de Producción**: Control y seguimiento de procesos de corte y confección de prendas
-2. **Lenguaje de Inventario**: Gestión de ingreso, salida y disponibilidad de mercadería
-3. **Lenguaje de Ventas**: Registro y análisis de transacciones comerciales
+## Requisitos
 
-Cada lenguaje cuenta con su propio analizador léxico (lexer) y sintáctico (parser) implementados manualmente en C++, procesando archivos de texto (`.txt`).
+- Windows PowerShell
+- Flex/Bison (winflexbison3)
+- MinGW (gcc/g++)
+- Notepad (editor predeterminado)
+
+## Instalación y Compilación
+
+```powershell
+# Clonar repositorio
+git clone https://github.com/veliz-a/FashionFlow-Compiler.git
+cd FashionFlow-Compiler
+
+# Compilar todo
+./compile_all.ps1
+```
+
+## Uso
+
+```powershell
+# Ejecutar sistema integrado
+./fashionflow.exe
+```
+
+### Menú Principal
+1. **Producción** - Gestionar órdenes de producción
+2. **Inventario** - Controlar transferencias y stock
+3. **Ventas** - Registrar clientes y transacciones
+4. Salir
+
+### Operaciones por Módulo
+Cada módulo permite:
+- Registrar nueva operación (abre editor)
+- Ver ejemplos básicos/completos
+- Ver registros CSV guardados
 
 ## Estructura del Proyecto
 
 ```
-FashionFlow-Compiler/
-│
-├── docs/                               # Documentación y materiales académicos
-│   ├── avances_entregados/            # Entregables del curso y gramáticas
-│   ├── material_clase/                # Material del curso y ejemplos
-│   └── referencias/                   # Documentación de referencia
-│
-├── examples/                          # Ejemplos de uso de los lenguajes DSL
-│
-├── src/                               # Código fuente del compilador
-│   ├── produccion/                    # Módulo Producción
-│   │   ├── produccion.l               # Analizador léxico (Flex)
-│   │   ├── produccion.y               # Analizador sintáctico (Bison)
-│   │   └── casos_prueba/              # Programas de prueba
-│   │
-│   ├── inventario/                    # Módulo Inventario
-│   │   ├── lexer_inventario.cpp       # Analizador léxico
-│   │   ├── parser_inventario.cpp      # Analizador sintáctico
-│   │   ├── inventario.h               # Definiciones
-│   │   └── tests/                     # Casos de prueba
-│   │
-│   ├── ventas/                        # Módulo Ventas
-│   │   ├── lexer_ventas.cpp           # Analizador léxico
-│   │   ├── parser_ventas.cpp          # Analizador sintáctico
-│   │   ├── ventas.h                   # Definiciones
-│   │   └── tests/                     # Casos de prueba
-│   │
-│   ├── common/                        # Componentes compartidos
-│   └── main.cpp                       # Punto de entrada principal
+src/
+├── main.cpp                    # Sistema integrado
+├── common/                     # Utilidades compartidas
+├── produccion/                 # DSL Producción (Flex/Bison)
+│   ├── produccion.l/.y
+│   └── casos_prueba/
+├── inventario/                 # DSL Inventario (C++ manual)
+│   ├── lexer_inventario.cpp
+│   └── parser_inventario.cpp
+└── ventas/                     # DSL Ventas (Flex/Bison)
+    ├── Ventas.l/.y
+    └── tests/
+
+temp_*.txt                      # Archivos temporales para entrada
+*.csv                           # Registros persistentes
+compile_all.ps1                 # Script de compilación
 ```
 
-## Compilación
+## Archivos Generados
 
-Cada módulo puede compilarse de forma independiente según su implementación.
+- `produccion_ordenes.csv` - Órdenes de producción
+- `inventario_movimientos.csv` - Transferencias de inventario
+- `ventas_registro.csv` - Registros de ventas
 
-### Módulo de Producción (Flex/Bison)
+## Sintaxis DSL
 
-```bash
-cd src/produccion
-bison -d produccion.y
-flex produccion.l
-gcc lex.yy.c produccion.tab.c -o compilador_produccion
-```
-
-### Módulos de Inventario y Ventas (C++)
-
-Consultar las instrucciones específicas en cada módulo.
-
-## Uso
-
-Cada módulo procesa archivos de texto (`.txt`) con código fuente en su respectivo lenguaje DSL.
-
-### Ejemplo - Módulo de Producción
-
-```bash
-cd src/produccion
-./compilador_produccion casos_prueba/caso_prueba_produccion_01.txt
-```
-
-Consultar cada módulo para instrucciones específicas de uso y ejemplos de código.
+Ver ejemplos en archivos `temp_*.txt` y casos de prueba en cada módulo.
 
 ## Documentación
 
-La documentación del proyecto está organizada en la carpeta `docs/`:
-
-- **avances_entregados/**: Gramáticas formales y entregables del curso
-- **material_clase/**: Material proporcionado por el docente
-- **referencias/**: Documentación de contexto del proyecto
-
-Cada módulo en `src/` contiene su propia documentación específica.
-
-## Curso
-
-**Compiladores** - Profesor Javier Antonio Dioses Zárate  
-Facultad de Ingeniería - Universidad San Ignacio de Loyola  
-Ciclo 2025-02
+- `docs/avances_entregados/` - Gramáticas formales
+- `docs/material_clase/` - Referencias del curso

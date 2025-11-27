@@ -40,14 +40,16 @@ int contador_ordenes = 0;
 
 %%
 
-/* Símbolo inicial: Programa */
+/* Simbolo inicial: Programa */
 programa:
-    /* Programa vacío */
-    { printf("Programa válido: sin instrucciones\n"); }
-    | lista_instrucciones
+    lista_instrucciones
     { 
         printf("\n=== ANALISIS COMPLETADO ===\n");
         printf("Total de ordenes procesadas: %d\n", contador_ordenes);
+        if (contador_ordenes == 0) {
+            fprintf(stderr, "\nERROR: No se encontraron ordenes de produccion en el archivo\n");
+            exit(1);
+        }
     }
     ;
 

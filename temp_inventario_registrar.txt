@@ -1,0 +1,16 @@
+// INSTRUCCIONES: Registre su movimiento de inventario aqui
+// Despues de guardar y cerrar, el sistema procesara y limpiara este archivo automaticamente
+//
+// EJEMPLO:
+// TRANSFERIR {
+//     PRENDA: "Blusa Floral"
+//     TALLA: "M"
+//     CANTIDAD: 15
+//     DE: "Almacen Central"
+//     A: "Tienda Lima"
+//     FECHA: "2025-11-23"
+// }
+//
+// Escriba su transferencia debajo de esta linea:
+// ===============================================
+

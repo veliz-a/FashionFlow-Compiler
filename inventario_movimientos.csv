@@ -1,0 +1,9 @@
+Timestamp,Tipo_Operacion,Estado
+# FashionFlow - Registro de Movimientos de Inventario
+# Nancy's Collection
+# Estado: EXITO (compilacion correcta) | ERROR (sintaxis invalida)
+2025-11-23 01:06:07,Transferencia,EXITO
+2025-11-23 01:10:11,Transferencia,ERROR
+2025-11-23 01:18:14,Transferencia,ERROR
+2025-11-23 01:19:03,Transferencia,ERROR
+2025-11-23 01:24:32,Transferencia,ERROR

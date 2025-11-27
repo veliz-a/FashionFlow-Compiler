@@ -1,0 +1,16 @@
+Registrar_Cliente("Maria Lopez", "70123456", "maria@email.com", "Av. Larco 123");
+Registrar_Cliente("Juan Perez", "71234567", "juan@email.com", "Jr. Union 456");
+
+Registrar_Venta("VNT001", 250, 1, "Blusa", "M", "2025-02-15");
+Registrar_Venta("VNT002", 180, 2, "Pantalon", "L", "2025-02-15");
+
+Registrar_Gasto("Local", "Luz", "2025-02-15");
+Registrar_Gasto("Personal", "Limpieza", "2025-02-15");
+
+Registrar_Pago("Maria Lopez", "Efectivo", 250, "VNT001", "2025-02-15");
+Registrar_Pago("Juan Perez", "Tarjeta", 360, "VNT002", "2025-02-15");
+
+Registrar_Salario(1500, 30, "Ana Torres", "Vendedora", "2025-02-15");
+Registrar_Salario(2000, 30, "Carlos Ruiz", "Supervisor", "2025-02-15");
+
+Generar_Reporte;
