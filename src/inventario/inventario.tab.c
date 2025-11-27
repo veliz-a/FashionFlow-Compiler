@@ -79,8 +79,11 @@ void yyerror(const char *s);
 int has_prenda_t, has_talla_t, has_cantidad_t, has_de_t, has_a_t, has_fecha_t;
 int repeated_t;
 
-int has_codigo_i, has_prenda_i, has_descripcion_i, has_talla_i, has_destino_i;
+
+int has_codigo_i, has_prenda_i, has_descripcion_i, has_talla_i,
+    has_destino_i, has_fecha_i, has_cantidad_i;
 int repeated_i;
+
 
 int has_prenda_c, has_en_c;
 int repeated_c;
@@ -88,7 +91,8 @@ int repeated_c;
 int has_formato_e, has_fecha_e;
 int repeated_e;
 
-#line 92 "inventario.tab.c"
+
+#line 96 "inventario.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -482,16 +486,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   59
+#define YYLAST   68
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  24
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  15
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  34
+#define YYNRULES  36
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  73
+#define YYNSTATES  79
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   278
@@ -542,10 +546,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    37,    37,    38,    42,    43,    44,    45,    49,    49,
-      70,    71,    76,    81,    86,    91,    96,   104,   104,   123,
-     124,   129,   134,   139,   144,   152,   152,   168,   169,   174,
-     182,   182,   198,   199,   204
+       0,    41,    41,    42,    46,    47,    48,    49,    53,    53,
+      74,    75,    80,    85,    90,    95,   100,   109,   109,   130,
+     131,   136,   141,   146,   151,   156,   161,   170,   170,   186,
+     187,   192,   201,   201,   217,   218,   223
 };
 #endif
 
@@ -577,7 +581,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-10)
+#define YYPACT_NINF (-15)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -591,14 +595,14 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -10,    19,   -10,    -9,    -5,     0,     1,   -10,   -10,   -10,
-     -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,
-      -7,    -2,     3,    13,     9,    10,    11,    14,    15,    16,
-     -10,    17,    18,    20,    21,    22,   -10,    23,    24,   -10,
-      25,    26,   -10,    12,    27,    -1,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,   -10,   -10,
-     -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,
-     -10,   -10,   -10
+     -15,    21,   -15,   -14,     1,     3,    12,   -15,   -15,   -15,
+     -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,
+       5,    -7,    10,    -8,    11,    13,    14,    15,    16,    17,
+     -15,    18,    19,    20,    22,    23,    24,    25,   -15,    26,
+      27,   -15,    28,    29,   -15,    30,    31,    32,    34,    35,
+      36,    37,    38,    39,    41,    42,    43,    44,    45,    46,
+      47,    48,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,
+     -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -607,20 +611,20 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        2,     0,     1,     0,     0,     0,     0,     3,     4,     5,
-       6,     7,     8,    17,    25,    30,    10,    19,    27,    32,
+       6,     7,     8,    17,    27,    32,    10,    19,    29,    34,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       9,     0,     0,     0,     0,     0,    18,     0,     0,    26,
-       0,     0,    31,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    11,    12,
-      13,    14,    15,    16,    21,    23,    24,    20,    22,    28,
-      29,    33,    34
+       9,     0,     0,     0,     0,     0,     0,     0,    18,     0,
+       0,    28,     0,     0,    33,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,    11,    12,    13,    14,    15,    16,    21,    23,
+      26,    24,    25,    20,    22,    30,    31,    35,    36
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,   -10,
-     -10,   -10,   -10,   -10,   -10
+     -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,
+     -15,   -15,   -15,   -15,   -15
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -635,22 +639,24 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      24,    25,    26,    27,    28,    31,    32,    29,    12,    33,
-      37,    30,    13,    34,    35,    38,    36,    14,    15,     2,
-      60,    39,     3,     4,     5,     6,    40,    41,    43,    44,
-      45,    42,    58,    46,    47,    48,    49,    50,     0,    51,
-      52,    53,    54,    55,    56,    57,     0,    59,    61,    62,
-      63,    64,    65,    66,    67,    68,    69,    70,    71,    72
+      31,    32,    33,    12,    34,    42,    43,    35,    36,    37,
+      44,    38,    24,    25,    26,    27,    28,    39,    13,    29,
+      14,     2,    40,    30,     3,     4,     5,     6,    41,    15,
+      45,     0,    46,    47,    48,    49,    50,    51,    52,    53,
+       0,    54,    55,    56,    57,    58,    59,    60,    61,     0,
+      62,    63,     0,    64,    65,    66,    67,    68,    69,     0,
+      70,    71,    72,    73,    74,    75,    76,    77,    78
 };
 
 static const yytype_int8 yycheck[] =
 {
-       7,     8,     9,    10,    11,     7,     8,    14,    17,    11,
-       7,    18,    17,    15,    16,    12,    18,    17,    17,     0,
-      21,    18,     3,     4,     5,     6,    13,    14,    19,    19,
-      19,    18,    20,    19,    19,    19,    19,    19,    -1,    19,
-      19,    19,    19,    19,    19,    19,    -1,    20,    20,    20,
-      20,    20,    20,    20,    20,    20,    20,    20,    20,    20
+       7,     8,     9,    17,    11,    13,    14,    14,    15,    16,
+      18,    18,     7,     8,     9,    10,    11,     7,    17,    14,
+      17,     0,    12,    18,     3,     4,     5,     6,    18,    17,
+      19,    -1,    19,    19,    19,    19,    19,    19,    19,    19,
+      -1,    19,    19,    19,    19,    19,    19,    19,    19,    -1,
+      20,    20,    -1,    21,    20,    20,    20,    20,    20,    -1,
+      21,    20,    20,    20,    20,    20,    20,    20,    20
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -660,11 +666,11 @@ static const yytype_int8 yystos[] =
        0,    25,     0,     3,     4,     5,     6,    26,    27,    30,
       33,    36,    17,    17,    17,    17,    28,    31,    34,    37,
       29,    32,    35,    38,     7,     8,     9,    10,    11,    14,
-      18,     7,     8,    11,    15,    16,    18,     7,    12,    18,
-      13,    14,    18,    19,    19,    19,    19,    19,    19,    19,
-      19,    19,    19,    19,    19,    19,    19,    19,    20,    20,
-      21,    20,    20,    20,    20,    20,    20,    20,    20,    20,
-      20,    20,    20
+      18,     7,     8,     9,    11,    14,    15,    16,    18,     7,
+      12,    18,    13,    14,    18,    19,    19,    19,    19,    19,
+      19,    19,    19,    19,    19,    19,    19,    19,    19,    19,
+      19,    19,    20,    20,    21,    20,    20,    20,    20,    20,
+      21,    20,    20,    20,    20,    20,    20,    20,    20
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -672,8 +678,8 @@ static const yytype_int8 yyr1[] =
 {
        0,    24,    25,    25,    26,    26,    26,    26,    28,    27,
       29,    29,    29,    29,    29,    29,    29,    31,    30,    32,
-      32,    32,    32,    32,    32,    34,    33,    35,    35,    35,
-      37,    36,    38,    38,    38
+      32,    32,    32,    32,    32,    32,    32,    34,    33,    35,
+      35,    35,    37,    36,    38,    38,    38
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
@@ -681,8 +687,8 @@ static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     1,     1,     1,     0,     5,
        0,     4,     4,     4,     4,     4,     4,     0,     5,     0,
-       4,     4,     4,     4,     4,     0,     5,     0,     4,     4,
-       0,     5,     0,     4,     4
+       4,     4,     4,     4,     4,     4,     4,     0,     5,     0,
+       4,     4,     0,     5,     0,     4,     4
 };
 
 
@@ -1146,17 +1152,17 @@ yyreduce:
   switch (yyn)
     {
   case 8: /* $@1: %empty  */
-#line 49 "inventario.y"
+#line 53 "inventario.y"
                       {
         has_prenda_t = has_talla_t = has_cantidad_t =
         has_de_t = has_a_t = has_fecha_t = 0;
         repeated_t = 0;
     }
-#line 1156 "inventario.tab.c"
+#line 1162 "inventario.tab.c"
     break;
 
   case 9: /* transferir_block: TRANSFERIR LBRACE $@1 transferir_items RBRACE  */
-#line 54 "inventario.y"
+#line 58 "inventario.y"
                             {
         int ok = 1;
 
@@ -1171,81 +1177,81 @@ yyreduce:
         printf(ok ? "[OK] TRANSFERIR valido\n"
                    : "[ERROR] TRANSFERIR invalido\n");
     }
-#line 1175 "inventario.tab.c"
+#line 1181 "inventario.tab.c"
     break;
 
   case 11: /* transferir_items: transferir_items PRENDA COLON STRING  */
-#line 71 "inventario.y"
+#line 75 "inventario.y"
                                            {
         if (has_prenda_t) { printf("Error: PRENDA repetido.\n"); repeated_t = 1; }
         printf("  PRENDA = %s\n", (yyvsp[0].text));
         has_prenda_t = 1;
     }
-#line 1185 "inventario.tab.c"
+#line 1191 "inventario.tab.c"
     break;
 
   case 12: /* transferir_items: transferir_items TALLA COLON STRING  */
-#line 76 "inventario.y"
+#line 80 "inventario.y"
                                           {
         if (has_talla_t) { printf("Error: TALLA repetido.\n"); repeated_t = 1; }
         printf("  TALLA = %s\n", (yyvsp[0].text));
         has_talla_t = 1;
     }
-#line 1195 "inventario.tab.c"
+#line 1201 "inventario.tab.c"
     break;
 
   case 13: /* transferir_items: transferir_items CANTIDAD COLON NUMBER  */
-#line 81 "inventario.y"
+#line 85 "inventario.y"
                                              {
         if (has_cantidad_t) { printf("Error: CANTIDAD repetido.\n"); repeated_t = 1; }
         printf("  CANTIDAD = %d\n", (yyvsp[0].number));
         has_cantidad_t = 1;
     }
-#line 1205 "inventario.tab.c"
+#line 1211 "inventario.tab.c"
     break;
 
   case 14: /* transferir_items: transferir_items DE COLON STRING  */
-#line 86 "inventario.y"
+#line 90 "inventario.y"
                                        {
         if (has_de_t) { printf("Error: DE repetido.\n"); repeated_t = 1; }
         printf("  DE = %s\n", (yyvsp[0].text));
         has_de_t = 1;
     }
-#line 1215 "inventario.tab.c"
+#line 1221 "inventario.tab.c"
     break;
 
   case 15: /* transferir_items: transferir_items A COLON STRING  */
-#line 91 "inventario.y"
+#line 95 "inventario.y"
                                       {
         if (has_a_t) { printf("Error: A repetido.\n"); repeated_t = 1; }
         printf("  A = %s\n", (yyvsp[0].text));
         has_a_t = 1;
     }
-#line 1225 "inventario.tab.c"
+#line 1231 "inventario.tab.c"
     break;
 
   case 16: /* transferir_items: transferir_items FECHA COLON STRING  */
-#line 96 "inventario.y"
+#line 100 "inventario.y"
                                           {
         if (has_fecha_t) { printf("Error: FECHA repetido.\n"); repeated_t = 1; }
         printf("  FECHA = %s\n", (yyvsp[0].text));
         has_fecha_t = 1;
     }
-#line 1235 "inventario.tab.c"
+#line 1241 "inventario.tab.c"
     break;
 
   case 17: /* $@2: %empty  */
-#line 104 "inventario.y"
+#line 109 "inventario.y"
                     {
         has_codigo_i = has_prenda_i = has_descripcion_i =
-        has_talla_i = has_destino_i = 0;
+        has_talla_i = has_destino_i = has_fecha_i = has_cantidad_i = 0;
         repeated_i = 0;
     }
-#line 1245 "inventario.tab.c"
+#line 1251 "inventario.tab.c"
     break;
 
   case 18: /* ingresar_block: INGRESAR LBRACE $@2 ingresar_items RBRACE  */
-#line 109 "inventario.y"
+#line 114 "inventario.y"
                           {
         int ok = 1;
 
@@ -1254,74 +1260,96 @@ yyreduce:
         if (!has_prenda_i)  { printf("Error: falta PRENDA en INGRESAR\n"); ok = 0; }
         if (!has_talla_i)   { printf("Error: falta TALLA en INGRESAR\n"); ok = 0; }
         if (!has_destino_i) { printf("Error: falta A (DESTINO) en INGRESAR\n"); ok = 0; }
+        if (!has_fecha_i)   { printf("Error: falta FECHA en INGRESAR\n"); ok = 0; }
+        if (!has_cantidad_i){ printf("Error: falta CANTIDAD en INGRESAR\n"); ok = 0; }
 
         printf(ok ? "[OK] INGRESAR valido\n"
                    : "[ERROR] INGRESAR invalido\n");
     }
-#line 1262 "inventario.tab.c"
+#line 1270 "inventario.tab.c"
     break;
 
   case 20: /* ingresar_items: ingresar_items CODIGO COLON STRING  */
-#line 124 "inventario.y"
+#line 131 "inventario.y"
                                          {
         if (has_codigo_i) { printf("Error: CODIGO repetido.\n"); repeated_i = 1; }
         printf("  CODIGO = %s\n", (yyvsp[0].text));
         has_codigo_i = 1;
     }
-#line 1272 "inventario.tab.c"
+#line 1280 "inventario.tab.c"
     break;
 
   case 21: /* ingresar_items: ingresar_items PRENDA COLON STRING  */
-#line 129 "inventario.y"
+#line 136 "inventario.y"
                                          {
         if (has_prenda_i) { printf("Error: PRENDA repetido.\n"); repeated_i = 1; }
         printf("  PRENDA = %s\n", (yyvsp[0].text));
         has_prenda_i = 1;
     }
-#line 1282 "inventario.tab.c"
+#line 1290 "inventario.tab.c"
     break;
 
   case 22: /* ingresar_items: ingresar_items DESCRIPCION COLON STRING  */
-#line 134 "inventario.y"
+#line 141 "inventario.y"
                                               {
         if (has_descripcion_i) { printf("Error: DESCRIPCION repetido.\n"); repeated_i = 1; }
         printf("  DESCRIPCION = %s\n", (yyvsp[0].text));
         has_descripcion_i = 1;
     }
-#line 1292 "inventario.tab.c"
+#line 1300 "inventario.tab.c"
     break;
 
   case 23: /* ingresar_items: ingresar_items TALLA COLON STRING  */
-#line 139 "inventario.y"
+#line 146 "inventario.y"
                                         {
         if (has_talla_i) { printf("Error: TALLA repetido.\n"); repeated_i = 1; }
         printf("  TALLA = %s\n", (yyvsp[0].text));
         has_talla_i = 1;
     }
-#line 1302 "inventario.tab.c"
+#line 1310 "inventario.tab.c"
     break;
 
   case 24: /* ingresar_items: ingresar_items A COLON STRING  */
-#line 144 "inventario.y"
+#line 151 "inventario.y"
                                     {
         if (has_destino_i) { printf("Error: A repetido.\n"); repeated_i = 1; }
         printf("  DESTINO = %s\n", (yyvsp[0].text));
         has_destino_i = 1;
     }
-#line 1312 "inventario.tab.c"
+#line 1320 "inventario.tab.c"
     break;
 
-  case 25: /* $@3: %empty  */
-#line 152 "inventario.y"
+  case 25: /* ingresar_items: ingresar_items FECHA COLON STRING  */
+#line 156 "inventario.y"
+                                        {
+        if (has_fecha_i) { printf("Error: FECHA repetido.\n"); repeated_i = 1; }
+        printf("  FECHA = %s\n", (yyvsp[0].text));
+        has_fecha_i = 1;
+    }
+#line 1330 "inventario.tab.c"
+    break;
+
+  case 26: /* ingresar_items: ingresar_items CANTIDAD COLON NUMBER  */
+#line 161 "inventario.y"
+                                           {
+        if (has_cantidad_i) { printf("Error: CANTIDAD repetido.\n"); repeated_i = 1; }
+        printf("  CANTIDAD = %d\n", (yyvsp[0].number));
+        has_cantidad_i = 1;
+    }
+#line 1340 "inventario.tab.c"
+    break;
+
+  case 27: /* $@3: %empty  */
+#line 170 "inventario.y"
                      {
         has_prenda_c = has_en_c = 0;
         repeated_c = 0;
     }
-#line 1321 "inventario.tab.c"
+#line 1349 "inventario.tab.c"
     break;
 
-  case 26: /* consultar_block: CONSULTAR LBRACE $@3 consultar_items RBRACE  */
-#line 156 "inventario.y"
+  case 28: /* consultar_block: CONSULTAR LBRACE $@3 consultar_items RBRACE  */
+#line 174 "inventario.y"
                            {
         int ok = 1;
 
@@ -1332,40 +1360,40 @@ yyreduce:
         printf(ok ? "[OK] CONSULTAR valido\n"
                    : "[ERROR] CONSULTAR invalido\n");
     }
-#line 1336 "inventario.tab.c"
+#line 1364 "inventario.tab.c"
     break;
 
-  case 28: /* consultar_items: consultar_items PRENDA COLON STRING  */
-#line 169 "inventario.y"
+  case 30: /* consultar_items: consultar_items PRENDA COLON STRING  */
+#line 187 "inventario.y"
                                           {
         if (has_prenda_c) { printf("Error: PRENDA repetido.\n"); repeated_c = 1; }
         printf("  PRENDA = %s\n", (yyvsp[0].text));
         has_prenda_c = 1;
     }
-#line 1346 "inventario.tab.c"
+#line 1374 "inventario.tab.c"
     break;
 
-  case 29: /* consultar_items: consultar_items EN COLON STRING  */
-#line 174 "inventario.y"
+  case 31: /* consultar_items: consultar_items EN COLON STRING  */
+#line 192 "inventario.y"
                                       {
         if (has_en_c) { printf("Error: EN repetido.\n"); repeated_c = 1; }
         printf("  UBICACION = %s\n", (yyvsp[0].text));
         has_en_c = 1;
     }
-#line 1356 "inventario.tab.c"
+#line 1384 "inventario.tab.c"
     break;
 
-  case 30: /* $@4: %empty  */
-#line 182 "inventario.y"
+  case 32: /* $@4: %empty  */
+#line 201 "inventario.y"
                     {
         has_formato_e = has_fecha_e = 0;
         repeated_e = 0;
     }
-#line 1365 "inventario.tab.c"
+#line 1393 "inventario.tab.c"
     break;
 
-  case 31: /* exportar_block: EXPORTAR LBRACE $@4 exportar_items RBRACE  */
-#line 186 "inventario.y"
+  case 33: /* exportar_block: EXPORTAR LBRACE $@4 exportar_items RBRACE  */
+#line 205 "inventario.y"
                           {
         int ok = 1;
 
@@ -1376,31 +1404,31 @@ yyreduce:
         printf(ok ? "[OK] EXPORTAR valido\n"
                    : "[ERROR] EXPORTAR invalido\n");
     }
-#line 1380 "inventario.tab.c"
+#line 1408 "inventario.tab.c"
     break;
 
-  case 33: /* exportar_items: exportar_items FORMATO COLON STRING  */
-#line 199 "inventario.y"
+  case 35: /* exportar_items: exportar_items FORMATO COLON STRING  */
+#line 218 "inventario.y"
                                           {
         if (has_formato_e) { printf("Error: FORMATO repetido.\n"); repeated_e = 1; }
         printf("  FORMATO = %s\n", (yyvsp[0].text));
         has_formato_e = 1;
     }
-#line 1390 "inventario.tab.c"
+#line 1418 "inventario.tab.c"
     break;
 
-  case 34: /* exportar_items: exportar_items FECHA COLON STRING  */
-#line 204 "inventario.y"
+  case 36: /* exportar_items: exportar_items FECHA COLON STRING  */
+#line 223 "inventario.y"
                                         {
         if (has_fecha_e) { printf("Error: FECHA repetido.\n"); repeated_e = 1; }
         printf("  FECHA = %s\n", (yyvsp[0].text));
         has_fecha_e = 1;
     }
-#line 1400 "inventario.tab.c"
+#line 1428 "inventario.tab.c"
     break;
 
 
-#line 1404 "inventario.tab.c"
+#line 1432 "inventario.tab.c"
 
       default: break;
     }
@@ -1593,7 +1621,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 211 "inventario.y"
+#line 230 "inventario.y"
 
 
 int main() { return yyparse(); }

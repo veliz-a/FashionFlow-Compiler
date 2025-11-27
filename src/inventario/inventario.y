@@ -9,14 +9,18 @@ void yyerror(const char *s);
 int has_prenda_t, has_talla_t, has_cantidad_t, has_de_t, has_a_t, has_fecha_t;
 int repeated_t;
 
-int has_codigo_i, has_prenda_i, has_descripcion_i, has_talla_i, has_destino_i;
+
+int has_codigo_i, has_prenda_i, has_descripcion_i, has_talla_i,
+    has_destino_i, has_fecha_i, has_cantidad_i;
 int repeated_i;
+
 
 int has_prenda_c, has_en_c;
 int repeated_c;
 
 int has_formato_e, has_fecha_e;
 int repeated_e;
+
 %}
 
 %union {
@@ -100,10 +104,11 @@ transferir_items:
     }
     ;
 
+
 ingresar_block:
     INGRESAR LBRACE {
         has_codigo_i = has_prenda_i = has_descripcion_i =
-        has_talla_i = has_destino_i = 0;
+        has_talla_i = has_destino_i = has_fecha_i = has_cantidad_i = 0;
         repeated_i = 0;
     }
     ingresar_items RBRACE {
@@ -114,6 +119,8 @@ ingresar_block:
         if (!has_prenda_i)  { printf("Error: falta PRENDA en INGRESAR\n"); ok = 0; }
         if (!has_talla_i)   { printf("Error: falta TALLA en INGRESAR\n"); ok = 0; }
         if (!has_destino_i) { printf("Error: falta A (DESTINO) en INGRESAR\n"); ok = 0; }
+        if (!has_fecha_i)   { printf("Error: falta FECHA en INGRESAR\n"); ok = 0; }
+        if (!has_cantidad_i){ printf("Error: falta CANTIDAD en INGRESAR\n"); ok = 0; }
 
         printf(ok ? "[OK] INGRESAR valido\n"
                    : "[ERROR] INGRESAR invalido\n");
@@ -146,7 +153,18 @@ ingresar_items:
         printf("  DESTINO = %s\n", $4);
         has_destino_i = 1;
     }
+    | ingresar_items FECHA COLON STRING {
+        if (has_fecha_i) { printf("Error: FECHA repetido.\n"); repeated_i = 1; }
+        printf("  FECHA = %s\n", $4);
+        has_fecha_i = 1;
+    }
+    | ingresar_items CANTIDAD COLON NUMBER {
+        if (has_cantidad_i) { printf("Error: CANTIDAD repetido.\n"); repeated_i = 1; }
+        printf("  CANTIDAD = %d\n", $4);
+        has_cantidad_i = 1;
+    }
     ;
+
 
 consultar_block:
     CONSULTAR LBRACE {
@@ -177,6 +195,7 @@ consultar_items:
         has_en_c = 1;
     }
     ;
+
 
 exportar_block:
     EXPORTAR LBRACE {

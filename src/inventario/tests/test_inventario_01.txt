@@ -2,7 +2,7 @@ TRANSFERIR{
 	PRENDA: "Blusa Nancy"
 	TALLA: "M"
 	CANTIDAD: 15
-	DE: "Almacen Central"
+	DE: "Almacén Central"
 	A: "Tienda Iquitos"
 	FECHA: "2025-10-15"
 }
@@ -10,9 +10,11 @@ TRANSFERIR{
 INGRESAR{
 	CODIGO: "COD 0406"
 	PRENDA: "Falda Midi"
+	CANTIDAD: 16
 	DESCRIPCION:"falda ancha"
 	TALLA: "S"
-	A: "Almacen Central"
+	A: "Almacén Central"
+	FECHA: "2025-11-02"
 
 }
 
