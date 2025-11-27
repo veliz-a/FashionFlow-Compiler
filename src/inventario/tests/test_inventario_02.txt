@@ -8,6 +8,7 @@ TRANSFERIR{
 
 INGRESAR{
     CODIGO: "COD 0406"
+    CODIGO: "COD 0406"
     PRENDA: "Falda Midi"
     DESCRIPCION:"falda ancha"
     TALLA: "S"
@@ -16,11 +17,10 @@ INGRESAR{
 }
 
 CONSULTAR {
-    PRENDA:"Blusa Nancy"
+    PRENDA:Blusa Nancy
     EN: "Tienda Lima"
 }
 
 EXPORTAR {
     FORMATO: "CSV" 
     FECHA: "2025-10-15"
-}
