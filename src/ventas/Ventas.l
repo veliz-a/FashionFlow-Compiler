@@ -19,7 +19,7 @@
 ";"                  { return FIN_SENTENCIA; }
 
 \"[^\"]*\"            { yylval.str = strdup(yytext + 1); yylval.str[strlen(yylval.str)-1] = '\0'; return CADENA; }
-[0-9]+                { yylval.num = atoi(yytext);  return NUMERO; }
+[0-9]+(\.[0-9]+)?     { yylval.num = atoi(yytext);  return NUMERO; }
 
 [ \t\r\n]+      { /* ignorar espacios */ }
 \/\/.*          { /* ignorar comentarios */ }

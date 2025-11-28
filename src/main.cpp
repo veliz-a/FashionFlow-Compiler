@@ -326,8 +326,8 @@ int ejecutarVentas() {
                 limpiar << "//\n";
                 limpiar << "// EJEMPLO:\n";
                 limpiar << "// Registrar_Cliente(\"Maria Lopez\", \"987654321\", \"maria@email.com\", \"Av. Larco 123\");\n";
-                limpiar << "// Registrar_Venta(\"VNT001\", 89.90, 1, \"Blusa Floral\", \"M\", \"2025-11-23\");\n";
-                limpiar << "// Registrar_Pago(\"Maria Lopez\", \"Efectivo\", 89.90, \"VNT001\", \"2025-11-23\");\n";
+                limpiar << "// Registrar_Venta(\"VNT001\", 89, 1, \"Blusa Floral\", \"M\", \"2025-11-23\");\n";
+                limpiar << "// Registrar_Pago(\"Maria Lopez\", \"Efectivo\", 89, \"VNT001\", \"2025-11-23\");\n";
                 limpiar << "// Generar_Reporte;\n";
                 limpiar << "//\n";
                 limpiar << "// Escriba su venta debajo de esta linea:\n";
