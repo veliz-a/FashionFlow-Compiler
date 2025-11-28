@@ -14,3 +14,11 @@
 // Escriba su transferencia debajo de esta linea:
 // ===============================================
 
+TRANSFERIR {
+	PRENDA: "Blusa Nancy"
+	TALLA: "M"
+	CANTIDAD: 16
+	DE: "Almacen Central"
+	A: "Tienda Lima"
+	FECHA: "2025-11-25"
+}
