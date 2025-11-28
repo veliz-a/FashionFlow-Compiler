@@ -178,6 +178,7 @@ int ejecutarInventario() {
             cin.get();
         } else if (opcion == "2") {
             archivo = "src\\inventario\\tests\\test_inventario_01.txt";
+            system(("notepad.exe " + archivo).c_str());
         } else if (opcion == "3") {
             archivo = "src\\inventario\\tests\\test_inventario_02.txt";
         } else if (opcion == "4") {

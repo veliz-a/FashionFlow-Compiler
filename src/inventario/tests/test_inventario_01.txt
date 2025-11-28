@@ -6,24 +6,3 @@ TRANSFERIR{
 	A: "Tienda Iquitos"
 	FECHA: "2025-10-15"
 }
-
-INGRESAR{
-	CODIGO: "COD 0406"
-	PRENDA: "Falda Midi"
-	CANTIDAD: 16
-	DESCRIPCION:"falda ancha"
-	TALLA: "S"
-	A: "Almacén Central"
-	FECHA: "2025-11-02"
-
-}
-
-CONSULTAR {
-	PRENDA:"Blusa Nancy"
-	EN: "Tienda Lima"
-}
-
-EXPORTAR {
-	 FORMATO: "CSV" 
-	 FECHA: "2025-10-15"
-}
