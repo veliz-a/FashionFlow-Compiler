@@ -1,9 +1,14 @@
-// Caso de Prueba 1 - Declaracion Basica de Orden
-// Una orden simple con tallas y colores
-
-ORDEN ORD-2025-001 {
-    DISEÑO: BLUSA-VER-023
-    TALLAS: [S, M, L]
-    COLORES: [Azul, Blanco]
-    CANTIDADES: [10, 12, 15, 8, 20, 5]
+ORDEN ORD-001 {
+    DISENO: BLUSA-VER
+    TALLAS: [S, M]
+    COLORES: [Azul, Rojo]
+    CANTIDADES: [10, 15, 8, 12]
 }
+
+CORTE ORD-001 {
+    CONSUMO: 25.50
+}
+
+CALCULAR_COSTO ORD-001 PRECIO_TELA: 20.00
+
+CONSULTAR ORDENES DONDE ESTADO == Cortada

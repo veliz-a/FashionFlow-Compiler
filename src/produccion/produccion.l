@@ -1,17 +1,15 @@
-/* produccion.l - Analizador Léxico para el Lenguaje de Producción */
+/* produccion.l - Analizador Lexico para el Lenguaje de Produccion */
 /* FashionFlow Compiler - Nancy's Collection */
-/* Módulo: Producción */
 
 %{
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "produccion.tab.h"  /* Generado por Bison */
+#include "produccion.tab.h"
 
 int linea = 1;
 int columna = 1;
 
-/* Actualizar posición */
 void actualizar_columna() {
     columna += yyleng;
 }
@@ -20,12 +18,10 @@ void nueva_linea() {
     linea++;
     columna = 1;
 }
-
 %}
 
 %option noyywrap
 
-/* Definiciones de patrones */
 DIGITO      [0-9]
 LETRA       [a-zA-Z]
 ID          {LETRA}({LETRA}|{DIGITO}|[_-])*
@@ -36,17 +32,26 @@ COMENTARIO  \/\/.*
 
 %%
 
-    /* Palabras reservadas - Instrucciones principales */
+    /* Palabras reservadas - Instrucciones */
 "ORDEN"             { actualizar_columna(); return KW_ORDEN; }
+"CORTE"             { actualizar_columna(); return KW_CORTE; }
+"CONSULTAR"         { actualizar_columna(); return KW_CONSULTAR; }
+"CALCULAR_COSTO"    { actualizar_columna(); return KW_CALCULAR_COSTO; }
 
     /* Palabras reservadas - Atributos */
-"DISEÑO"            { actualizar_columna(); return KW_DISENO; }
+"DISENO"            { actualizar_columna(); return KW_DISENO; }
 "TALLAS"            { actualizar_columna(); return KW_TALLAS; }
 "COLORES"           { actualizar_columna(); return KW_COLORES; }
 "CANTIDADES"        { actualizar_columna(); return KW_CANTIDADES; }
+"CONSUMO"           { actualizar_columna(); return KW_CONSUMO; }
+"PRECIO_TELA"       { actualizar_columna(); return KW_PRECIO_TELA; }
+"ESTADO"            { actualizar_columna(); return KW_ESTADO; }
+"ORDENES"           { actualizar_columna(); return KW_ORDENES; }
+"DONDE"             { actualizar_columna(); return KW_DONDE; }
 
     /* Operadores */
 ":"                 { actualizar_columna(); return OP_DOS_PUNTOS; }
+"=="                { actualizar_columna(); return OP_IGUAL_IGUAL; }
 
     /* Delimitadores */
 "{"                 { actualizar_columna(); return LBRACE; }
@@ -74,18 +79,14 @@ COMENTARIO  \/\/.*
                       return ID; 
                     }
 
-    /* Ignorar espacios en blanco */
+    /* Ignorar espacios y comentarios */
 {ESPACIO}           { actualizar_columna(); }
-
-    /* Ignorar comentarios */
 {COMENTARIO}        { actualizar_columna(); }
-
-    /* Nueva línea */
 \n                  { nueva_linea(); }
 
-    /* Caracteres inválidos */
+    /* Caracteres invalidos */
 .                   { 
-                      printf("Error léxico [línea %d, col %d]: Carácter '%s' no reconocido\n", 
+                      fprintf(stderr, "Error lexico [linea %d, col %d]: Caracter '%s' no reconocido\n", 
                              linea, columna, yytext);
                       actualizar_columna();
                     }
