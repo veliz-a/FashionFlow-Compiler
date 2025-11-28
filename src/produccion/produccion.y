@@ -109,6 +109,9 @@ instruccion:
     ;
 
 /* === DECLARACION DE ORDEN === */
+/* Posiciones: $1=ORDEN $2=ID $3=LBRACE $4=DISENO $5=: $6=ID 
+               $7=TALLAS $8=: $9=lista $10=COLORES $11=: $12=lista 
+               $13=CANTIDADES $14=: $15=lista $16=RBRACE */
 declaracion_orden:
     KW_ORDEN ID LBRACE
         KW_DISENO OP_DOS_PUNTOS ID
@@ -118,21 +121,22 @@ declaracion_orden:
     RBRACE
     {
         /* Validacion semantica: coherencia dimensional */
-        validar_coherencia_dimensional($8, $10, $12);
+        /* $9=tallas, $12=colores, $15=cantidades */
+        validar_coherencia_dimensional($9, $12, $15);
         
         /* Registrar orden */
         strcpy(ordenes[total_ordenes].id, $2);
         strcpy(ordenes[total_ordenes].diseno, $6);
-        ordenes[total_ordenes].num_tallas = $8;
-        ordenes[total_ordenes].num_colores = $10;
-        ordenes[total_ordenes].num_cantidades = $12;
+        ordenes[total_ordenes].num_tallas = $9;
+        ordenes[total_ordenes].num_colores = $12;
+        ordenes[total_ordenes].num_cantidades = $15;
         ordenes[total_ordenes].consumo_tela = 0.0;
         strcpy(ordenes[total_ordenes].estado, "Registrada");
         
         printf("\n[OK] ORDEN '%s' registrada\n", $2);
         printf("    Diseno: %s\n", $6);
         printf("    Combinaciones: %d tallas x %d colores = %d prendas\n", 
-               $8, $10, $12);
+               $9, $12, $15);
         printf("    Estado: Registrada\n");
         
         total_ordenes++;

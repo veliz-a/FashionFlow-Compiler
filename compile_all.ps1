@@ -37,7 +37,9 @@ Pop-Location
 # 2. Inventario
 Write-Host "[2/4] Compilando Inventario..." -ForegroundColor Yellow
 Push-Location src\inventario
-g++ -o inventario.exe lexer_inventario.cpp parser_inventario.cpp -std=c++11
+flex inventario.l
+bison -d inventario.y
+gcc -o inventario.exe lex.yy.c inventario.tab.c
 if (-not (Test-Path "inventario.exe")) { $errores++ }
 Pop-Location
 
